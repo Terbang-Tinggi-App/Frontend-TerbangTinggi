@@ -13,6 +13,8 @@ import Logo from '../Icons/Logo';
 import CustomModal from '../Modal/CustomModal';
 import { getTransactionsData } from '../../redux/transactions/transactions.actions';
 
+const API_URL = import.meta.env.VITE_BASE_URL;
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -28,7 +30,6 @@ function Navbar() {
 
   const isAdmin = role === 'Admin';
   const isUser = role === 'User';
-  const API_URL = process.env.REACT_APP_AUTH_API;
 
   const dispatch = useDispatch();
   const isValidUser = useValidUser();

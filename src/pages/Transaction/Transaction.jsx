@@ -9,7 +9,7 @@ import { Layout } from '../../components/Layout';
 import Spinner from '../../components/Layout/Spinner';
 import Protected from '../../components/Routes/Protected';
 
-const API_URL = process.env.REACT_APP_AUTH_API;
+const API_URL = import.meta.env.VITE_BASE_URL;
 
 export default function Transaction() {
   const [data, setData] = useState(null);

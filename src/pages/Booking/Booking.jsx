@@ -12,7 +12,7 @@ import { Layout } from '../../components/Layout';
 import TextSkeleton from '../../components/Layout/TextSkeleton';
 import CustomModal from '../../components/Modal/CustomModal';
 
-const API_URL = process.env.REACT_APP_AUTH_API;
+const API_URL = import.meta.env.VITE_BASE_URL;
 
 export function Booking() {
   const [data, setData] = useState([]);

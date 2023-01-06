@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { _getTransactionsData } from './transactions.slice';
 
-const API_URL = process.env.REACT_APP_AUTH_API;
+const API_URL = import.meta.env.VITE_BASE_URL;
 
 export const getTransactionsData = () => async (dispatch) => {
   const { data } = await axios.get(`${API_URL}/transaction`, {

@@ -79,7 +79,7 @@ export default function CreateTicket() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_AUTH_API}/flight/data`,
+        `${import.meta.env.VITE_BASE_URL}/flight/data`,
         {
           ...body
         },

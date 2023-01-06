@@ -13,9 +13,10 @@ import { BsFillPinMapFill, BsTelephonePlusFill } from 'react-icons/bs';
 import Protected from '../../components/Routes/Protected';
 import Spinner from '../../components/Layout/Spinner';
 
+const API_URL = import.meta.env.VITE_BASE_URL;
+
 export default function Detail() {
   const [detail, setDetail] = useState(null);
-  const API_URL = process.env.REACT_APP_AUTH_API;
   const { id } = useParams();
 
   useEffect(() => {
