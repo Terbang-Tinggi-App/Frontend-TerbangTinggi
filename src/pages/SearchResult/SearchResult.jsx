@@ -9,7 +9,7 @@ import { getSortedTicket } from '../../utils/tickets';
 import CustomModal from '../../components/Modal/CustomModal';
 import SearchFlightsForm from '../../components/Input/SearchFlightsForm';
 
-const BASE_URL = process.env.REACT_APP_AUTH_API;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export function SearchResult() {
   const [resultData, setResultData] = useState(null);

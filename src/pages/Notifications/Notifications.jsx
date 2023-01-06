@@ -9,9 +9,10 @@ import { Layout } from '../../components/Layout';
 import Protected from '../../components/Routes/Protected';
 import Spinner from '../../components/Layout/Spinner';
 
+const API_URL = import.meta.env.VITE_BASE_URL;
+
 export function Notifications() {
   const [notif, setNotif] = useState(null);
-  const API_URL = process.env.REACT_APP_AUTH_API;
   const [refresh, setRefresh] = useState(false);
 
   const unread = notif && notif.filter((x) => !x.is_read);

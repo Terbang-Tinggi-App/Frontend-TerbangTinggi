@@ -10,9 +10,9 @@ import { Layout } from '../../components/Layout';
 import Spinner from '../../components/Layout/Spinner';
 import Protected from '../../components/Routes/Protected';
 
-function User() {
-  const API_URL = process.env.REACT_APP_AUTH_API;
+const API_URL = import.meta.env.VITE_BASE_URL;
 
+function User() {
   const [formData, setFormData] = useState(null);
 
   const save = (e) => {

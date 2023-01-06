@@ -13,7 +13,7 @@ import CustomModal from '../../../components/Modal/CustomModal';
 import Spinner from '../../../components/Layout/Spinner';
 import { FormControl, Label } from '../../../components/Input';
 
-const BASE_URL = process.env.REACT_APP_AUTH_API;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function ListTicket() {
   const [refetch, setRefetch] = useState(false);

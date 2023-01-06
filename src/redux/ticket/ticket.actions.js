@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { _setTicketData, _resetData, _getAllTickets } from './ticket.slice';
 
-const BASE_URL = process.env.REACT_APP_AUTH_API;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const setTicketData =
   ({

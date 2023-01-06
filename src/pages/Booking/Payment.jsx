@@ -13,7 +13,7 @@ import Protected from '../../components/Routes/Protected';
 import TextSkeleton from '../../components/Layout/TextSkeleton';
 import ImageSkeleton from '../../components/Layout/ImageSkeleton';
 
-const API_URL = process.env.REACT_APP_AUTH_API;
+const API_URL = import.meta.env.VITE_BASE_URL;
 
 function Payment() {
   const [ticketData, setTicketData] = useState(null);

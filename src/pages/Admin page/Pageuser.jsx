@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Layout/Spinner';
 
 export default function Pageuser() {
-  const API_URL = process.env.REACT_APP_AUTH_API;
+  const API_URL = import.meta.env.VITE_BASE_URL;
 
   const [user, setUser] = useState(null);
   const [page, setPage] = useState(1);

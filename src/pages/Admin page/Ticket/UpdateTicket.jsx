@@ -14,7 +14,7 @@ import {
 import { VStack } from '../../../components/Container';
 import Spinner from '../../../components/Layout/Spinner';
 
-const API_URL = process.env.REACT_APP_AUTH_API;
+const API_URL = import.meta.env.VITE_BASE_URL;
 
 export default function UpdateTicket() {
   const [data, setData] = useState(null);
