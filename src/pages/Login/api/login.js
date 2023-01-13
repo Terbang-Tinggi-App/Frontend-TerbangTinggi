@@ -1,3 +1,6 @@
 import { axios } from '../../../lib/axios';
 
-export const loginWithEmailAndPassword = (data) => axios.post('/auth/login', data);
+export const loginWithEmailAndPassword = async (data) => {
+  const response = await axios.post('/auth/login', data);
+  return response;
+};
