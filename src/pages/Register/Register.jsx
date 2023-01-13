@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { MdFlightLand } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
@@ -50,8 +49,8 @@ export function Register() {
   };
 
   return (
-    <div className="flex h-screen ">
-      <div className="  w-6/12 mx-5 my-28 lg:px-44">
+    <div className="flex h-screen flex-row-reverse">
+      <div className="w-full md:w-6/12 flex flex-col justify-center items-center mx-8">
         <Link to="/">
           <h1 className="font-bold text-2xl">Register</h1>
         </Link>
@@ -146,17 +145,7 @@ export function Register() {
           </div>
         </form>
       </div>
-      <div className=" sm:block hidden w-9/12 rounded-r-2xl bg-gray-100 p-28 px-28 decoration-purple-500 font-bold text-purple-500 font-sans text-center italic">
-        {' '}
-        <MdFlightLand
-          className="hover:cursor-pointer text-[#7E56DA] ml-28 mt-32"
-          size={200}
-          onClick={() => {
-            navigate('/');
-          }}
-        />{' '}
-        Terbang Tinggi App
-      </div>
+      <div className="hidden md:block w-6/12 object-cover bg-cover bg-no-repeat bg-center bg-[url(https://images.unsplash.com/photo-1660587624398-aa9ce06fd3f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1440&q=100)]" />
     </div>
   );
 }
