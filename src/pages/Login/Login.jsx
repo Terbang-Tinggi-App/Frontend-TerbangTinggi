@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
@@ -132,9 +131,7 @@ export function Login() {
             {isSubmitting ? 'Logging in' : 'Login'}
           </button>
 
-          <GoogleOAuthProvider clientId="134468154099-apc6un8gp22f8dadi8tf1kf4o2fv2lnk.apps.googleusercontent.com">
-            <Googlelogin />
-          </GoogleOAuthProvider>
+          <Googlelogin />
 
           <div className=" text-sm text-center mt-5">
             Don&apos;t have an account?{' '}
