@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import useValidUser from '../../hooks/useValidUser';
 import { registerUser } from '../../redux/user/user.actions';
 import { registerSchema } from '../../utils/schemas';
+import Googlelogin from '../Login/Googlelogin';
 
 export function Register() {
   const [passwordEye, setPasswordEye] = useState(false);
@@ -134,6 +135,8 @@ export function Register() {
             type="submit">
             {isSubmitting ? 'Registering' : 'Register'}
           </button>
+
+          <Googlelogin type="Register" />
 
           <div className=" text-sm text-center mt-3">
             Already Have An Account?{' '}

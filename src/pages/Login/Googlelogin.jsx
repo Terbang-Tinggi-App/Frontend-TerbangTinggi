@@ -1,20 +1,27 @@
 import { useGoogleLogin } from '@react-oauth/google';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { loginGoogle } from '../../redux/user/user.actions';
 
-export default function Googlelogin() {
+export default function Googlelogin({ type }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const redirect = searchParams.get('redirect');
+  const id = searchParams.get('id');
+  const passengers = searchParams.get('passengers');
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (response) => {
       dispatch(
         loginGoogle(response.access_token, (status) => {
-          if (status === 200 || status === 201) {
+          if ((status === 200 || status === 201) && Boolean(redirect)) {
+            navigate(`/${redirect}/${id}?passengers=${passengers}`);
+          } else if (status === 200 || status === 201) {
             navigate('/');
           } else {
             toast('Login failed', { type: 'error' });
@@ -54,7 +61,7 @@ export default function Googlelogin() {
           d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
         />
       </svg>
-      <p className="mt-1">Login With Google</p>
+      <p className="mt-1">{type || 'Login'} With Google</p>
     </button>
   );
 }
