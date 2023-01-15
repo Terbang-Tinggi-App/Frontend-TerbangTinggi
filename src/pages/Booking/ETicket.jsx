@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { BiTimeFive } from 'react-icons/bi';
 import { IoDocumentTextOutline } from 'react-icons/io5';
 import { HiOutlineTicket } from 'react-icons/hi';
-import { toast } from 'react-toastify';
 import axios from 'axios';
-import { toPng } from 'html-to-image';
 
 import { Layout } from '../../components/Layout';
 import Logo from '../../components/Icons/Logo';
@@ -20,8 +18,6 @@ function ETicket() {
   const [image, setImage] = useState(null);
 
   const { buffer, url } = image ?? {};
-
-  const ref = useRef(null);
 
   const { detail_transaction: detailTransaction, isPaid } = ticketData ?? {};
   const passengers = detailTransaction ? detailTransaction[0]?.passenger : [];
@@ -41,23 +37,6 @@ function ETicket() {
   } = flight ?? {};
 
   const { paymentId } = useParams();
-
-  const onButtonClick = useCallback(() => {
-    if (ref.current === null) {
-      return;
-    }
-
-    toPng(ref.current, { cacheBust: true })
-      .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.download = 'my-image-name.png';
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((err) => {
-        toast(err.message);
-      });
-  }, [ref]);
 
   useEffect(() => {
     (async () => {
@@ -96,7 +75,7 @@ function ETicket() {
         </div>
         <div className="mx-4 md:mx-32 mt-8">
           <h1 className="text-3xl font-bold print:hidden">Your E-ticket has been issued</h1>
-          <div className="my-8 bg-white p-8 rounded-[4px]" ref={ref}>
+          <div className="my-8 bg-white p-8 rounded-[4px]">
             {/* ticket header start */}
             <div className="flex flex-wrap items-start justify-between">
               <div>
@@ -237,13 +216,6 @@ function ETicket() {
               Download your e-tikcet and boarding pass below
             </h2>
             <div className="flex gap-4 flex-wrap">
-              <button
-                onClick={onButtonClick}
-                className="w-auto btn border-brand btn-outline"
-                type="button">
-                <HiOutlineTicket size={24} className="mr-2" />
-                E-ticket
-              </button>
               {url ? (
                 <a href={url} target="_blank" rel="noreferrer">
                   <button
