@@ -43,7 +43,8 @@ export default function DetailTransaction() {
                       <tr className="bg-white dark:bg-gray-800">
                         <th
                           scope="row"
-                          className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
                           Full Name
                         </th>
                         <td className="py-4 px-6">
@@ -53,7 +54,8 @@ export default function DetailTransaction() {
                       <tr className="bg-white  dark:bg-gray-800">
                         <th
                           scope="row"
-                          className="py-4 px-6 flex font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          className="py-4 px-6 flex font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
                           Nationality ID
                         </th>
                         <td className=" py-4 px-6">{x.travelDocument}</td>
@@ -61,7 +63,8 @@ export default function DetailTransaction() {
                       <tr className="bg-white dark:bg-gray-800">
                         <th
                           scope="row"
-                          className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
                           Type
                         </th>
                         <td className="py-4 px-6">{x.type}</td>

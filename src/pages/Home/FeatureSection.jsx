@@ -51,7 +51,8 @@ export function WalletIcon() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="dodgerblue"
-      className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400">
+      className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -69,7 +70,8 @@ export function DollarIcon() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="orange"
-      className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400">
+      className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -87,7 +89,8 @@ export function RefundIcon() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="limegreen"
-      className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400">
+      className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

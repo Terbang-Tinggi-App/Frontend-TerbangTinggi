@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Logo from "../../components/Icons/Logo";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Logo from '../../components/Icons/Logo';
 
 export default function Verifiedemail() {
   const navigate = useNavigate();
@@ -111,18 +111,15 @@ export default function Verifiedemail() {
             </svg>
           </div>
 
-          <div className="text-center text-2xl font-bold mt-20">
-            Email Verification
-          </div>
+          <div className="text-center text-2xl font-bold mt-20">Email Verification</div>
           <p className="text-center text-sm mt-5 ">
-            Your email has been verified. You can continue using the
-            application.
+            Your email has been verified. You can continue using the application.
           </p>
           <button
             className="mt-5 btn bg-purple-primary w-full hover:bg-purple-primary-darker"
             type="button"
             onClick={() => {
-              navigate("/login");
+              navigate('/login');
             }}
           >
             Back To Login

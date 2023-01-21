@@ -84,7 +84,8 @@ export default function Transaction() {
                 .map((x) => (
                   <div
                     key={x.id}
-                    className="border-2 rounded-lg  drop-shadow-2xl md:drop-shadow-xl bg-white px-5 py-5 mt-5">
+                    className="border-2 rounded-lg  drop-shadow-2xl md:drop-shadow-xl bg-white px-5 py-5 mt-5"
+                  >
                     <p>{x?.detail_transaction[0].flight?.airlineName}</p>
                     <div className="flex">
                       <svg
@@ -92,7 +93,8 @@ export default function Transaction() {
                         height={40}
                         viewBox="0 0 48 48"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <g clipPath="url(#clip0_55_12)">
                           <circle cx="24" cy="24" r="24" fill="white" />
                           <path
@@ -152,7 +154,8 @@ export default function Transaction() {
                         className="font-medium btn-success px-5 py-2 rounded-lg"
                         onClick={() => {
                           handleDetail(x.id);
-                        }}>
+                        }}
+                      >
                         Detail
                       </button>
                       <button
@@ -160,7 +163,8 @@ export default function Transaction() {
                         className="font-medium btn-error px-5 py-2 rounded-lg"
                         onClick={() => {
                           handleDeleteTransaction(x.id);
-                        }}>
+                        }}
+                      >
                         Delete
                       </button>
                     </div>

@@ -62,7 +62,8 @@ function Inspiration() {
             key={place.name}
             to={`/search?departure=${departure}&arrival=${
               place.iata
-            }&passengers=1&tripType=one_way&sc=economy&date=${startDate ?? today}`}>
+            }&passengers=1&tripType=one_way&sc=economy&date=${startDate ?? today}`}
+          >
             <figure>
               <img src={place.image} alt={place.name} />
             </figure>

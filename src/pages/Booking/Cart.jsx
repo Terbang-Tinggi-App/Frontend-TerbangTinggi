@@ -37,13 +37,15 @@ export default function Cart() {
             <button
               className={`tab ${tabActive === 'unpaid' ? 'tab-active' : null}`}
               type="button"
-              onClick={handleUnpaidTab}>
+              onClick={handleUnpaidTab}
+            >
               Unpaid
             </button>
             <button
               className={`tab ${tabActive === 'experied' ? 'tab-active' : null}`}
               type="button"
-              onClick={handleExperiedTab}>
+              onClick={handleExperiedTab}
+            >
               Expired
             </button>
           </div>
@@ -53,7 +55,8 @@ export default function Cart() {
                   <Link
                     key={item.id}
                     className="border rounded-[4px] p-4 flex flex-wrap gap-2"
-                    to={`/payment/${item.payment_code}`}>
+                    to={`/payment/${item.payment_code}`}
+                  >
                     <div className="flex justify-between gap-4 w-full">
                       <p className="text-slate-500">
                         ID Transaction {item?.detail_transaction[0]?.transaction_id}

@@ -144,7 +144,8 @@ export function Register() {
           <button
             className="bg-brand rounded-md mt-5 text-white text-sm h-8 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
             disabled={loading}
-            type="submit">
+            type="submit"
+          >
             {loading ? 'Registering' : 'Register'}
           </button>
 

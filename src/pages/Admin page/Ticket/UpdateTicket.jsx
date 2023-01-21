@@ -240,7 +240,8 @@ export default function UpdateTicket() {
                   <button
                     type="button"
                     className="btn btn-primary w-32"
-                    onClick={handleUpdateTicket}>
+                    onClick={handleUpdateTicket}
+                  >
                     Update
                   </button>
                   <button
@@ -248,7 +249,8 @@ export default function UpdateTicket() {
                     className="btn btn-primary btn-outline w-32"
                     onClick={() => {
                       navigate('/flights');
-                    }}>
+                    }}
+                  >
                     Cancel
                   </button>
                 </div>

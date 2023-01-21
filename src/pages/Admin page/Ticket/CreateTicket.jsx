@@ -255,7 +255,8 @@ export default function CreateTicket() {
                 <button
                   type="button"
                   className="btn btn-primary btn-outline w-32"
-                  onClick={() => navigate('/flights')}>
+                  onClick={() => navigate('/flights')}
+                >
                   Cancel
                 </button>
               </div>

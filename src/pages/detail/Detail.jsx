@@ -48,7 +48,8 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className=" flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className=" flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <IoCreate size={20} className="mr-2 text-blue-500" />
                       Created
                     </th>
@@ -57,7 +58,8 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className=" flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className=" flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <MdUpdate size={20} className="mr-2 text-green-500" />
                       Updated
                     </th>
@@ -66,7 +68,8 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className="flex  py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className="flex  py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <FiMapPin size={20} className="mr-2 text-red-500" />
                       Address
                     </th>
@@ -75,7 +78,8 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <FcGlobe size={20} className="mr-2" />
                       Country
                     </th>
@@ -84,7 +88,8 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <FaCity size={20} className="mr-2 text-emerald-900" />
                       City
                     </th>
@@ -93,7 +98,8 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <BsFillPinMapFill size={20} className="text-indigo-500 mr-2" />
                       Province
                     </th>
@@ -102,14 +108,16 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className="flex py-4 px-5 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className="flex py-4 px-5 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20pt"
                         height="20pt"
                         className="mr-2"
                         version="1.1"
-                        viewBox="0 0 1200 1200">
+                        viewBox="0 0 1200 1200"
+                      >
                         <g>
                           <path d="m689.91 124.18c0 50.629-41.039 91.668-91.668 91.668-50.625 0-91.668-41.039-91.668-91.668 0-50.625 41.043-91.668 91.668-91.668 50.629 0 91.668 41.043 91.668 91.668" />
                           <path d="m605.96 681.67v415.95c0 29.051 23.555 52.609 52.621 52.609 29.051 0 52.609-23.555 52.609-52.609l-0.003906-711.11c0-5.3867 4.3438-9.7422 9.7422-9.7422 5.3633 0 9.7422 4.3672 9.7422 9.7422l-0.43359 256.27c0 22.02 17.844 39.852 39.863 39.852 21.996 0 39.84-17.832 39.84-39.852l0.007813-274.6c0-71.004-57.574-128.58-128.58-128.58l-60.336-0.58984c-7.5352 0-13.633 6.1094-13.633 13.645z" />
@@ -124,7 +132,8 @@ export default function Detail() {
                   <tr className="border-b border-gray-200">
                     <th
                       scope="row"
-                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
+                      className="flex py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50"
+                    >
                       <BsTelephonePlusFill size={20} className="mr-2 text-teal-500" />
                       Phone
                     </th>
@@ -138,7 +147,8 @@ export default function Detail() {
             <Link to="/users">
               <button
                 type="button"
-                className=" text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex mb-2">
+                className=" text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex mb-2"
+              >
                 <TiArrowBack />
                 Back
               </button>

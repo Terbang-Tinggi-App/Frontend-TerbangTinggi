@@ -92,7 +92,8 @@ export function ForgotPassword() {
                 <div>
                   <label
                     htmlFor="emailAddress"
-                    className="block mb-2 text-sm font-medium text-gray-900">
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
                     Your email
                   </label>
                   <input
@@ -112,7 +113,8 @@ export function ForgotPassword() {
                 <Button
                   type="submit"
                   onClick={handleSubmit}
-                  disabled={!email || !EMAIL.test(email) || isSubmitting}>
+                  disabled={!email || !EMAIL.test(email) || isSubmitting}
+                >
                   {isSubmitting ? 'Submitting' : 'Send Email'}
                 </Button>
               </form>

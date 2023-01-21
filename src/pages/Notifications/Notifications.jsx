@@ -146,13 +146,15 @@ export function Notifications() {
                       <button
                         type="button"
                         className="text-sm cursor-pointer mt-2 mx-2  text-red-500 "
-                        onClick={handleDeleteall}>
+                        onClick={handleDeleteall}
+                      >
                         Delete all
                       </button>
                       <button
                         type="button"
                         className="text-sm mt-2 text-sky-500 cursor-pointer"
-                        onClick={handleReadallnotif}>
+                        onClick={handleReadallnotif}
+                      >
                         Mark all as read
                       </button>
                     </div>
@@ -169,7 +171,8 @@ export function Notifications() {
                       }`}
                       onClick={() => {
                         handleReadbyid(x.id);
-                      }}>
+                      }}
+                    >
                       <div className="mx-5 ">
                         <div className="flex">
                           <div className="font-bold text-xl text-blue-500 py-1 font-sans">
@@ -180,7 +183,8 @@ export function Notifications() {
                             className="ml-auto"
                             onClick={() => {
                               handleDeletebyid(x.id);
-                            }}>
+                            }}
+                          >
                             <RxCross2 className="text-slate-400" />
                           </button>
                         </div>

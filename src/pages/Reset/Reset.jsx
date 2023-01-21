@@ -34,7 +34,8 @@ export function Reset() {
           className="btn btn-error"
           disabled={isLoading}
           onClick={handleResetLocalData}
-          type="button">
+          type="button"
+        >
           {isLoading ? 'Clearing...' : 'Clear Cache'}
         </button>
       </div>

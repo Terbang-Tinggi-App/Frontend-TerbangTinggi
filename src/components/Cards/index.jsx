@@ -1,1 +1,1 @@
-export * from "./ExpediaCard";
+export * from './ExpediaCard';

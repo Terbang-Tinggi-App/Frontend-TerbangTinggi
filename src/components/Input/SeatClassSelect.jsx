@@ -11,7 +11,8 @@ export function SeatClassSelect(props) {
     <select
       className={`select select-primary w-full max-w-xs ${className}`}
       name="seatClass"
-      {...rest}>
+      {...rest}
+    >
       <option value="economy">Economy</option>
       <option value="business">Bussiness</option>
     </select>

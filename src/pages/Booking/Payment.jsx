@@ -204,7 +204,8 @@ function Payment() {
             <div
               className={`max-w-xs ${
                 !isPaid ? 'hidden' : 'block'
-              } bg-info text-black font-bold px-4 py-2 rounded-[4px]`}>
+              } bg-info text-black font-bold px-4 py-2 rounded-[4px]`}
+            >
               Paid, get your e-ticket now
             </div>
             <CustomModal isOpen={isOpen} closeModal={closeModal} label="Payment confirmation">

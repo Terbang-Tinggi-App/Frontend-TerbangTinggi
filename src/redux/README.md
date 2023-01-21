@@ -13,18 +13,18 @@ State management
 
 ```js
 //store.js
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import counterReducer from "./redux/counter/counter.slice";
+import counterReducer from './redux/counter/counter.slice';
 // Import your reducer first
-import myNewFeatureReducer from "./redux/myNewFeature/myNewFeature.slice";
+import myNewFeatureReducer from './redux/myNewFeature/myNewFeature.slice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     // put here as an key value pair like this
-    myNewFeature: myNewFeatureReducer,
-  },
+    myNewFeature: myNewFeatureReducer
+  }
 });
 ```
 

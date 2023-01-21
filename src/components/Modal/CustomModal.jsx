@@ -22,7 +22,8 @@ function CustomModal({ isOpen, children, closeModal, label, className }) {
       onRequestClose={closeModal}
       style={customStyles}
       className={`modal-box relative ${className}`}
-      contentLabel={label ?? 'Example'}>
+      contentLabel={label ?? 'Example'}
+    >
       {children}
     </Modal>
   );

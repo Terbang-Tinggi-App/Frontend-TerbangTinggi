@@ -225,7 +225,8 @@ export function Booking() {
                       onChange={(e) => {
                         handleChange(i, e.target.name, e.target.value);
                       }}
-                      value={data[i]?.type}>
+                      value={data[i]?.type}
+                    >
                       <option value="adult">Adult</option>
                       <option value="child">Child</option>
                     </select>
@@ -291,7 +292,8 @@ export function Booking() {
         isOpen={isOpen}
         closeModal={closeModal}
         label="example modal usage"
-        className="z-10">
+        className="z-10"
+      >
         <IoWarningOutline size="32" />
         <h1 className="font-semibold text-2xl md:text-3xl my-2 md:my-4">Proceed to payment?</h1>
         <p>

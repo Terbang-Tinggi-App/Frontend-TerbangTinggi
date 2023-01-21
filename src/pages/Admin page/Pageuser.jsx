@@ -112,7 +112,8 @@ export default function Pageuser() {
                   <tr key={x.id} className="bg-white border-b hover:bg-gray-50">
                     <th
                       scope="row"
-                      className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                      className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
+                    >
                       {x.username}
                     </th>
 
@@ -126,7 +127,8 @@ export default function Pageuser() {
                         className="font-medium bg-green-500 px-5 py-2 rounded-lg text-white  hover:underline"
                         onClick={() => {
                           handleDetail(x.id);
-                        }}>
+                        }}
+                      >
                         Detail
                       </button>
                     </td>
@@ -137,7 +139,8 @@ export default function Pageuser() {
                         className="font-medium bg-red-500 px-5 py-2 rounded-lg text-white  hover:underline"
                         onClick={() => {
                           handleDelete(x.id);
-                        }}>
+                        }}
+                      >
                         Delete
                       </button>
                     </td>

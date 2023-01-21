@@ -135,7 +135,8 @@ function ListTicket() {
                   page: 1
                 });
               }}
-              className="select select-bordered select-sm">
+              className="select select-bordered select-sm"
+            >
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -205,7 +206,8 @@ function ListTicket() {
                               );
                               navigate(`/flights/${ticket.id}`);
                             }}
-                            type="button">
+                            type="button"
+                          >
                             Update
                           </button>
                           <button
@@ -214,7 +216,8 @@ function ListTicket() {
                               openModal();
                               setCurrentTicket(ticket);
                             }}
-                            type="button">
+                            type="button"
+                          >
                             Delete
                           </button>
                         </td>
@@ -233,7 +236,8 @@ function ListTicket() {
                   type="button"
                   className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
                   disabled={page <= 1}
-                  onClick={handleDecrementPage}>
+                  onClick={handleDecrementPage}
+                >
                   Prev
                 </button>
                 <button
@@ -242,14 +246,16 @@ function ListTicket() {
                     !Number(page <= 1) || !Number(page - 1) <= 1 ? 'hidden' : 'block'
                   }`}
                   disabled={page <= 1}
-                  onClick={handleDecrementPage}>
+                  onClick={handleDecrementPage}
+                >
                   1l
                 </button>
                 <button
                   type="button"
                   className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
                   disabled={page <= 1}
-                  onClick={handleDecrementPage}>
+                  onClick={handleDecrementPage}
+                >
                   {page - 1}
                 </button>
                 <button type="button" className="btn btn-active">
@@ -259,7 +265,8 @@ function ListTicket() {
                   type="button"
                   className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
                   disabled={page >= totalPages}
-                  onClick={handleIncrementPage}>
+                  onClick={handleIncrementPage}
+                >
                   {Number(page) + 1}
                 </button>
                 <button
@@ -270,14 +277,16 @@ function ListTicket() {
                       : 'block'
                   }`}
                   disabled={page >= totalPages}
-                  onClick={() => handleAmountPage(Number(totalPages))}>
+                  onClick={() => handleAmountPage(Number(totalPages))}
+                >
                   {totalPages}
                 </button>
                 <button
                   type="button"
                   className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
                   disabled={page >= totalPages}
-                  onClick={handleIncrementPage}>
+                  onClick={handleIncrementPage}
+                >
                   Next
                 </button>
               </div>
@@ -308,7 +317,8 @@ function ListTicket() {
                 handleDeleteTicket(currentTicket.id);
                 closeModal();
               }}
-              type="button">
+              type="button"
+            >
               Delete
             </button>
           </div>

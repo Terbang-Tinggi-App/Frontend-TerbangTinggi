@@ -13,7 +13,8 @@ export function Button(props) {
         variant ? '' : 'bg-brand hover:bg-brand-darker-800'
       } ${className}`}
       type="button"
-      {...rest}>
+      {...rest}
+    >
       {children}
     </button>
   );

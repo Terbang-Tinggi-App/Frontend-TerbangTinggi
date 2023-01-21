@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
-import "./FormInput.css";
+import React, { useState } from 'react';
+import './FormInput.css';
 
 function FormInput(props) {
   const [focused, setFocused] = useState(false);
