@@ -3,7 +3,7 @@ import { IoMdAirplane } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getTransactionsData } from '../../redux/transactions/transactions.actions';
+import { getTransactionsData } from '../../redux/transactions/transactions.slice';
 import { Layout } from '../../components/Layout';
 import Protected from '../../components/Routes/Protected';
 

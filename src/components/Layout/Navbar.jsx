@@ -8,10 +8,10 @@ import { TbLogout, TbUser, TbHistory } from 'react-icons/tb';
 import { IoWarningOutline } from 'react-icons/io5';
 
 import useValidUser from '../../hooks/useValidUser';
-import { logout } from '../../redux/user/user.actions';
+import { logout } from '../../redux/user/user.slice';
 import Logo from '../Icons/Logo';
 import CustomModal from '../Modal/CustomModal';
-import { getTransactionsData } from '../../redux/transactions/transactions.actions';
+import { getTransactionsData } from '../../redux/transactions/transactions.slice';
 
 const API_URL = import.meta.env.VITE_BASE_URL;
 
@@ -46,7 +46,9 @@ function Navbar() {
   const handleLogout = () => {
     dispatch(logout());
     toast('Successfully log out', {
-      type: 'success'
+      type: 'info',
+      position: 'bottom-right',
+      autoClose: 1000
     });
   };
 

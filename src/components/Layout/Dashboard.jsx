@@ -9,7 +9,7 @@ import useValidUser from '../../hooks/useValidUser';
 import Protected from '../Routes/Protected';
 import Logo from '../Icons/Logo';
 import CustomModal from '../Modal/CustomModal';
-import { logout } from '../../redux/user/user.actions';
+import { logout } from '../../redux/user/user.slice';
 
 export function Dashboard({ children }) {
   const [modalOpen, setModalOpen] = useState(false);
