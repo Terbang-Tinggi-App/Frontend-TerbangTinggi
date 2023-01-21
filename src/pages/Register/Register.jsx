@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import useValidUser from '../../hooks/useValidUser';
-import { registerUser } from '../../redux/user/user.actions';
+import { registerUser } from '../../redux/auth/auth.actions';
 import { registerSchema } from '../../utils/schemas';
 import Googlelogin from '../Login/Googlelogin';
 
@@ -15,10 +15,12 @@ export function Register() {
   const [passwordEye, setPasswordEye] = useState(false);
   const [confirmPasswordEye, setConfirmPasswordEye] = useState(false);
 
+  const { loading, error, success } = useSelector((state) => state.auth);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm({ resolver: yupResolver(registerSchema) });
 
   const navigate = useNavigate();
@@ -36,17 +38,21 @@ export function Register() {
     if (isValidUser) {
       navigate('/');
     }
-  }, []);
+
+    // This will cause bug if user is redirected to /login and user back to /register route it'll automatically redirect
+    // again to /login cause status state is still true, make it after register user already logged in
+    // and handle confirmation email later if user want to process transaction or book ticket
+    if (success) {
+      toast('Register success, check your email to verify account', {
+        autoClose: 2000,
+        type: 'success'
+      });
+      navigate('/login');
+    }
+  }, [success]);
 
   const handleRegister = (data) => {
-    dispatch(
-      registerUser(data, (status) => {
-        if (status === 201 || status === 200) {
-          toast('Register success, check your email');
-          navigate('/login');
-        }
-      })
-    );
+    dispatch(registerUser(data));
   };
 
   return (
@@ -56,10 +62,16 @@ export function Register() {
           <h1 className="font-bold text-2xl">Register</h1>
         </Link>
 
-        <p className="text-sm mt-5  ">Get Started! Please enter your details</p>
+        <p className="text-sm mt-2">Get Started! Please enter your details</p>
+
+        {error ? (
+          <p className="bg-red-300 p-3 mt-2 rounded-[4px] text-red-700 font-semibold w-80 text-center">
+            {typeof error === 'string' ? error : JSON.stringify(error)}
+          </p>
+        ) : null}
 
         <form className="flex flex-col w-80" onSubmit={handleSubmit(handleRegister)}>
-          <div className="mt-3">Username</div>
+          <div className="mt-2">Username</div>
           <input
             type="text"
             className={`focus:outline-0 border border-brand px-9 rounded-md pl-5 h-10 placeholder:text-sm ${
@@ -131,9 +143,9 @@ export function Register() {
 
           <button
             className="bg-brand rounded-md mt-5 text-white text-sm h-8 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
-            disabled={isSubmitting}
+            disabled={loading}
             type="submit">
-            {isSubmitting ? 'Registering' : 'Register'}
+            {loading ? 'Registering' : 'Register'}
           </button>
 
           <Googlelogin type="Register" />

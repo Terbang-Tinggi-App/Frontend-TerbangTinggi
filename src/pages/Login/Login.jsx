@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import useValidUser from '../../hooks/useValidUser';
-import { login } from '../../redux/user/user.actions';
+import { login } from '../../redux/auth/auth.actions';
 import Googlelogin from './Googlelogin';
 import { loginSchema } from '../../utils/schemas';
 import { FormControl, Label } from '../../components/Input';
@@ -16,8 +17,11 @@ export function Login() {
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState(FaEyeSlash);
 
+  const { loading, userInfo, error } = useSelector((state) => state.auth);
+
   const [searchParams] = useSearchParams();
 
+  // TODO: Handle redirect to last page later
   const redirect = searchParams.get('redirect');
   const id = searchParams.get('id');
   const passengers = searchParams.get('passengers');
@@ -25,35 +29,15 @@ export function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm({ resolver: yupResolver(loginSchema) });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isValidUser = useValidUser();
 
-  const handleLogin = async (data) => {
-    dispatch(
-      login(data, (status, role) => {
-        if (status === 200 && Boolean(redirect)) {
-          navigate(`/${redirect}/${id}?passengers=${passengers}`);
-          return;
-        }
-        if (status === 200 && role === 'Admin') {
-          navigate('/dashboard');
-          toast('Succsessfully logged in as admin', {
-            type: 'success'
-          });
-          return;
-        }
-        if (status === 200) {
-          navigate('/');
-          toast('Succsessfully logged in', {
-            type: 'success'
-          });
-        }
-      })
-    );
+  const handleLogin = (data) => {
+    dispatch(login(data));
   };
 
   const handleToogle = () => {
@@ -70,7 +54,16 @@ export function Login() {
     if (isValidUser) {
       navigate('/');
     }
-  }, []);
+
+    if (userInfo) {
+      toast('Logged in', {
+        autoClose: 1000,
+        position: 'bottom-right',
+        type: 'success'
+      });
+      navigate('/');
+    }
+  }, [userInfo]);
 
   return (
     <div className="flex h-screen flex-row-reverse">
@@ -80,6 +73,12 @@ export function Login() {
         </Link>
 
         <p className="text-sm mt-5">Welcome back! Please enter your details</p>
+
+        {error ? (
+          <p className="bg-red-300 p-3 mt-2 rounded-[4px] text-red-700 font-semibold w-80 text-center">
+            {typeof error === 'string' ? error : JSON.stringify(error)}
+          </p>
+        ) : null}
 
         <form className="flex flex-col w-80" onSubmit={handleSubmit(handleLogin)}>
           <FormControl>
@@ -127,8 +126,8 @@ export function Login() {
             </button>
           </div>
 
-          <button className="btn btn-primary bg-brand mt-4" disabled={isSubmitting} type="submit">
-            {isSubmitting ? 'Logging in' : 'Login'}
+          <button className="btn btn-primary bg-brand mt-4" disabled={loading} type="submit">
+            {loading ? 'Logging in' : 'Login'}
           </button>
 
           <Googlelogin />
