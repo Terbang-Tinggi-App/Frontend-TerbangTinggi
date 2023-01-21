@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { BASE_API_URL } from '../../config';
+import { BASE_API_URL } from '../../../config';
 
 export const registerUser = createAsyncThunk(
   'auth/register',

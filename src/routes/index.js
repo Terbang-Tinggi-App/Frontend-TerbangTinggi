@@ -8,12 +8,10 @@ import Error from '../pages/Error';
 import ETicket from '../pages/Booking/ETicket';
 import { ForgotPassword } from '../pages/ForgotPassword';
 import ListTicket from '../pages/Admin page/Ticket/ListTicket';
-import { Login } from '../pages/Login';
 import { Notifications } from '../pages/Notifications';
 import Pageadmin from '../pages/Admin page/Pageadmin';
 import Payment from '../pages/Booking/Payment';
 import { PrivacyPolicy } from '../pages/PrivacyPolicy';
-import { Register } from '../pages/Register';
 import { Reset } from '../pages/Reset';
 import { ResetPassword } from '../pages/ResetPassword';
 import { SearchResult } from '../pages/SearchResult';
@@ -21,6 +19,8 @@ import Transaction from '../pages/Transaction/Transaction';
 import UpdateTicket from '../pages/Admin page/Ticket/UpdateTicket';
 import Userpage from '../pages/Admin page/Userpage';
 import Verifiedemail from '../pages/Authentication/Verifiedemail';
+import { Login } from '../features/auth/routes/Login';
+import { Register } from '../features/auth/routes/Register';
 
 const routes = [
   {
