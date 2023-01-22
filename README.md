@@ -1,3 +1,5 @@
+[![Vercel Preview Deployment](https://github.com/Terbang-Tinggi-App/Frontend-TerbangTinggi/actions/workflows/preview.yml/badge.svg)](https://github.com/Terbang-Tinggi-App/Frontend-TerbangTinggi/actions/workflows/preview.yml)
+
 # Terbang Tinggi Client
 
 Flight booking app
