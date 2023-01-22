@@ -2,8 +2,8 @@ import React from 'react';
 
 import FeatureSection from './FeatureSection';
 import Inspiration from './Inspiration';
-import { Layout } from '../../components/Layout';
-import SearchFlightsForm from '../../components/Input/SearchFlightsForm';
+import { Layout } from '../../../../components/Layout';
+import SearchFlightsForm from '../../../../components/Input/SearchFlightsForm';
 
 export function Home() {
   const bgStyles = {

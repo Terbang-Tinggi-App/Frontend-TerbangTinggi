@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Layout } from '../../components/Layout';
-import profile1 from '../../components/img/1.jpg';
-import profile2 from '../../components/img/2.jpg';
-import profile3 from '../../components/img/3.jpeg';
-import profile5 from '../../components/img/5.jpg';
-import profile6 from '../../components/img/6.jpg';
+import { Layout } from '../../../components/Layout';
+import profile1 from '../../../components/img/1.jpg';
+import profile2 from '../../../components/img/2.jpg';
+import profile3 from '../../../components/img/3.jpeg';
+import profile5 from '../../../components/img/5.jpg';
+import profile6 from '../../../components/img/6.jpg';
 
 export function AboutUs() {
   return (

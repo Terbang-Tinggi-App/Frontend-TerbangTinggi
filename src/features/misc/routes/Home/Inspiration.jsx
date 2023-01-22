@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { today } from '../../utils/dates';
-import useHistorySearch from '../../hooks/useHistorySearch';
+import { today } from '../../../../utils/dates';
+import useHistorySearch from '../../../../hooks/useHistorySearch';
 
 const DESTINATIONS = [
   {
