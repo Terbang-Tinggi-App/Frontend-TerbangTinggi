@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import useValidUser from '../../../hooks/useValidUser';
-import { registerUser } from '../utils/auth.actions';
+import { registerUser } from '../redux/auth.actions';
 import { registerSchema } from '../../../utils/schemas';
 
 export function RegisterForm() {
@@ -142,8 +142,7 @@ export function RegisterForm() {
         <button
           className="bg-brand rounded-md mt-5 text-white text-sm h-8 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
           disabled={loading}
-          type="submit"
-        >
+          type="submit">
           {loading ? 'Registering' : 'Register'}
         </button>
 

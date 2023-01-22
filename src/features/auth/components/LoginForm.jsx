@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import useValidUser from '../../../hooks/useValidUser';
-import { login } from '../utils/auth.actions';
+import { login } from '../redux/auth.actions';
 import { loginSchema } from '../../../utils/schemas';
 import { FormControl, Label } from '../../../components/Input';
 
@@ -119,8 +119,7 @@ export function LoginForm() {
           <button
             className="text-xs ml-auto mt-1 text-brand"
             type="button"
-            onClick={() => navigate('/forgot-password')}
-          >
+            onClick={() => navigate('/forgot-password')}>
             Forgot Password
           </button>
         </div>

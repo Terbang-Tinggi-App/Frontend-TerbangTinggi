@@ -1,4 +1,4 @@
-[![Vercel Preview Deployment](https://github.com/Terbang-Tinggi-App/Frontend-TerbangTinggi/actions/workflows/preview.yml/badge.svg)](https://github.com/Terbang-Tinggi-App/Frontend-TerbangTinggi/actions/workflows/preview.yml)
+[![Vercel Production Deployment](https://github.com/Terbang-Tinggi-App/Frontend-TerbangTinggi/actions/workflows/production.yml/badge.svg)](https://github.com/Terbang-Tinggi-App/Frontend-TerbangTinggi/actions/workflows/production.yml)
 
 # Terbang Tinggi Client
 
