@@ -119,7 +119,8 @@ export function LoginForm() {
           <button
             className="text-xs ml-auto mt-1 text-brand"
             type="button"
-            onClick={() => navigate('/forgot-password')}>
+            onClick={() => navigate('/forgot-password')}
+          >
             Forgot Password
           </button>
         </div>
