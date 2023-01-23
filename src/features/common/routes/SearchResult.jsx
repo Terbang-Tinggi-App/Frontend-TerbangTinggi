@@ -85,7 +85,8 @@ export function SearchResult() {
             isOpen={isOpen}
             closeModal={closeModal}
             label="Change search destination"
-            className="w-11/12 max-w-4xl">
+            className="w-11/12 max-w-4xl"
+          >
             <SearchFlightsForm setRefresh={setRefresh} setIsOpen={setIsOpen} />
             <div className="-mt-14 mx-8 block md:hidden">
               <button className="btn btn-outline w-full" onClick={closeModal} type="button">
@@ -120,7 +121,8 @@ export function SearchResult() {
             isOpen={isOpen}
             closeModal={closeModal}
             label="Change search destination"
-            className="w-11/12 max-w-4xl">
+            className="w-11/12 max-w-4xl"
+          >
             <SearchFlightsForm setRefresh={setRefresh} setIsOpen={setIsOpen} />
             <div className="-mt-14 mx-8 block md:hidden">
               <button className="btn btn-outline w-full" onClick={closeModal} type="button">
@@ -160,7 +162,8 @@ export function SearchResult() {
                   <select
                     name="sort"
                     onChange={(e) => setSort(e.target.value)}
-                    className="select select-bordered w-full max-w-xs select-xs">
+                    className="select select-bordered w-full max-w-xs select-xs"
+                  >
                     <option value="best">Featured</option>
                     <option value="price">Price: Low to High</option>
                     <option value="priceAsc">Price: High to Low</option>
@@ -200,7 +203,8 @@ export function SearchResult() {
         isOpen={isOpen}
         closeModal={closeModal}
         label="Change search destination"
-        className="w-11/12 max-w-4xl">
+        className="w-11/12 max-w-4xl"
+      >
         <SearchFlightsForm setRefresh={setRefresh} setIsOpen={setIsOpen} />
         <div className="-mt-14 mx-8 block md:hidden">
           <button className="btn btn-outline w-full" onClick={closeModal} type="button">
