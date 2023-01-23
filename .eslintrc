@@ -18,6 +18,8 @@
     "jsx-a11y/label-has-associated-control": 0,
     "import/prefer-default-export": 0,
     "no-param-reassign": 0,
-    "no-console": "error"
+    "no-console": "error",
+    "import/no-unresolved": [2, { "ignore": ["@/"] }],
+    "import/extensions": [2, { "ignore": ["@/"], "ignorePackages": true }]
   }
 }

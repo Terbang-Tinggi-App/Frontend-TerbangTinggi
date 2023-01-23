@@ -115,14 +115,14 @@ function Navbar() {
             ) : (
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
-                  to="/login"
+                  to="/auth/login"
                   className=" hover:bg-brand-darker-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium border-brand border-2"
                 >
                   Login
                 </Link>
 
                 <Link
-                  to="/register"
+                  to="/auth/register"
                   className="hover:bg-brand-darker-800  px-3 py-2 rounded-md text-sm font-medium bg-brand text-white border-brand border-solid border-2"
                 >
                   Register

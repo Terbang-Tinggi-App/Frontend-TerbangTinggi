@@ -10,8 +10,8 @@ import { FaCity } from 'react-icons/fa';
 import { FcGlobe } from 'react-icons/fc';
 import { BsFillPinMapFill, BsTelephonePlusFill } from 'react-icons/bs';
 
-import Protected from '../../components/Routes/Protected';
-import Spinner from '../../components/Layout/Spinner';
+import Protected from '../../../components/Routes/Protected';
+import Spinner from '../../../components/Layout/Spinner';
 
 const API_URL = import.meta.env.VITE_BASE_URL;
 

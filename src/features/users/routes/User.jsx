@@ -6,9 +6,9 @@ import { BsFillPinMapFill } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
-import { Layout } from '../../components/Layout';
-import Spinner from '../../components/Layout/Spinner';
-import Protected from '../../components/Routes/Protected';
+import { Layout } from '../../../components/Layout';
+import Spinner from '../../../components/Layout/Spinner';
+import Protected from '../../../components/Routes/Protected';
 
 const API_URL = import.meta.env.VITE_BASE_URL;
 

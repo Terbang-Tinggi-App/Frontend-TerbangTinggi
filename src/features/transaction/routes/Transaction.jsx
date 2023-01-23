@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MdFlightTakeoff, MdOutlineFlightLand } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
-import CalendarIcon from '../../components/Icons/CalendarIcon';
-import { Layout } from '../../components/Layout';
-import Spinner from '../../components/Layout/Spinner';
-import Protected from '../../components/Routes/Protected';
+import CalendarIcon from '@/components/Icons/CalendarIcon';
+import { Layout } from '@/components/Layout';
+import Spinner from '@/components/Layout/Spinner';
+import Protected from '@/components/Routes/Protected';
 
 const API_URL = import.meta.env.VITE_BASE_URL;
 

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
-import { Layout } from '../../components/Layout';
-import Spinner from '../../components/Layout/Spinner';
-import Protected from '../../components/Routes/Protected';
+import { Layout } from '../../../components/Layout';
+import Spinner from '../../../components/Layout/Spinner';
+import Protected from '../../../components/Routes/Protected';
 
 export default function DetailTransaction() {
   const API_URL = process.env.REACT_APP_AUTH_API;

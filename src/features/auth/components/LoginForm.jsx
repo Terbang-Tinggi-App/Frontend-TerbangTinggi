@@ -7,10 +7,10 @@ import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import useValidUser from '../../../hooks/useValidUser';
+import useValidUser from '@/hooks/useValidUser';
 import { login } from '../redux/auth.actions';
-import { loginSchema } from '../../../utils/schemas';
-import { FormControl, Label } from '../../../components/Input';
+import { loginSchema } from '@/utils/schemas';
+import { FormControl, Label } from '@/components/Input';
 
 export function LoginForm() {
   const [type, setType] = useState('password');
@@ -119,7 +119,7 @@ export function LoginForm() {
           <button
             className="text-xs ml-auto mt-1 text-brand"
             type="button"
-            onClick={() => navigate('/forgot-password')}
+            onClick={() => navigate('/auth/forgot-password')}
           >
             Forgot Password
           </button>
@@ -131,7 +131,7 @@ export function LoginForm() {
 
         <div className=" text-sm text-center mt-5">
           Don&apos;t have an account?{' '}
-          <Link to="/register">
+          <Link to="/auth/register">
             <button className="text-sm mt-2 text-brand" type="button">
               Register
             </button>{' '}

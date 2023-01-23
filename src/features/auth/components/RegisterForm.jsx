@@ -6,9 +6,9 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import useValidUser from '../../../hooks/useValidUser';
+import useValidUser from '@/hooks/useValidUser';
 import { registerUser } from '../redux/auth.actions';
-import { registerSchema } from '../../../utils/schemas';
+import { registerSchema } from '@/utils/schemas';
 
 export function RegisterForm() {
   const [passwordEye, setPasswordEye] = useState(false);
@@ -151,7 +151,7 @@ export function RegisterForm() {
 
         <div className=" text-sm text-center mt-3">
           Already Have An Account?{' '}
-          <Link to="/login">
+          <Link to="/auth/login">
             <button className="mt-2 text-brand" type="button">
               Login
             </button>
