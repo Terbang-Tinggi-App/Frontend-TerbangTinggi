@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
-import { Layout } from '../../components/Layout';
-import { ExpediaCard } from '../../components/Cards';
-import Spinner from '../../components/Layout/Spinner';
-import { getSortedTicket } from '../../utils/tickets';
-import CustomModal from '../../components/Modal/CustomModal';
-import SearchFlightsForm from '../../components/Input/SearchFlightsForm';
-
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { BASE_API_URL } from '../../../config';
+import { Layout } from '../../../components/Layout';
+import { ExpediaCard } from '../../../components/Cards';
+import Spinner from '../../../components/Layout/Spinner';
+import { getSortedTicket } from '../../../utils/tickets';
+import CustomModal from '../../../components/Modal/CustomModal';
+import SearchFlightsForm from '../../../components/Input/SearchFlightsForm';
 
 export function SearchResult() {
   const [resultData, setResultData] = useState(null);
@@ -44,7 +43,7 @@ export function SearchResult() {
         try {
           setError(null);
           const { data } = await axios.get(
-            `${BASE_URL}/schedule/search?departure=${departureParams}&arrival=${arrivalParams}&date=${fromDate}&sc=${seatClassParams}&tripType=${tripTypeParams}&passengers=${passengers}`
+            `${BASE_API_URL}/schedule/search?departure=${departureParams}&arrival=${arrivalParams}&date=${fromDate}&sc=${seatClassParams}&tripType=${tripTypeParams}&passengers=${passengers}`
           );
           setResultData(data?.data);
         } catch (err) {
@@ -57,7 +56,7 @@ export function SearchResult() {
         try {
           setError(null);
           const { data } = await axios.get(
-            `${BASE_URL}/schedule/search?departure=${departureParams}&arrival=${arrivalParams}&date=${fromDate}&sc=${seatClassParams}&tripType=${tripTypeParams}&passengers=${passengers}&returnDate=${returnDateParams}`
+            `${BASE_API_URL}/schedule/search?departure=${departureParams}&arrival=${arrivalParams}&date=${fromDate}&sc=${seatClassParams}&tripType=${tripTypeParams}&passengers=${passengers}&returnDate=${returnDateParams}`
           );
           setResultData(data?.data);
         } catch (err) {
@@ -86,8 +85,7 @@ export function SearchResult() {
             isOpen={isOpen}
             closeModal={closeModal}
             label="Change search destination"
-            className="w-11/12 max-w-4xl"
-          >
+            className="w-11/12 max-w-4xl">
             <SearchFlightsForm setRefresh={setRefresh} setIsOpen={setIsOpen} />
             <div className="-mt-14 mx-8 block md:hidden">
               <button className="btn btn-outline w-full" onClick={closeModal} type="button">
@@ -122,8 +120,7 @@ export function SearchResult() {
             isOpen={isOpen}
             closeModal={closeModal}
             label="Change search destination"
-            className="w-11/12 max-w-4xl"
-          >
+            className="w-11/12 max-w-4xl">
             <SearchFlightsForm setRefresh={setRefresh} setIsOpen={setIsOpen} />
             <div className="-mt-14 mx-8 block md:hidden">
               <button className="btn btn-outline w-full" onClick={closeModal} type="button">
@@ -163,8 +160,7 @@ export function SearchResult() {
                   <select
                     name="sort"
                     onChange={(e) => setSort(e.target.value)}
-                    className="select select-bordered w-full max-w-xs select-xs"
-                  >
+                    className="select select-bordered w-full max-w-xs select-xs">
                     <option value="best">Featured</option>
                     <option value="price">Price: Low to High</option>
                     <option value="priceAsc">Price: High to Low</option>
@@ -204,8 +200,7 @@ export function SearchResult() {
         isOpen={isOpen}
         closeModal={closeModal}
         label="Change search destination"
-        className="w-11/12 max-w-4xl"
-      >
+        className="w-11/12 max-w-4xl">
         <SearchFlightsForm setRefresh={setRefresh} setIsOpen={setIsOpen} />
         <div className="-mt-14 mx-8 block md:hidden">
           <button className="btn btn-outline w-full" onClick={closeModal} type="button">
