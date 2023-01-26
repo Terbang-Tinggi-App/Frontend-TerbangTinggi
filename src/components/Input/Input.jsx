@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Label } from './Label';
+
 /**
  *
  * @param {React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>} rest
@@ -7,7 +9,7 @@ import React from 'react';
  * @param {string} variant
  * @returns
  */
-export function Input({ className, variant, ...rest }) {
+export function Input({ className, label, variant, error, ...rest }) {
   const generateVariant = (type) => {
     switch (type) {
       case 'primary':
@@ -23,5 +25,10 @@ export function Input({ className, variant, ...rest }) {
     }
   };
 
-  return <input className={`input ${generateVariant(variant)} ${className}`} {...rest} />;
+  return (
+    <Label>
+      {label}
+      <input className={`input ${generateVariant(variant)} ${className}`} {...rest} />
+    </Label>
+  );
 }

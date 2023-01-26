@@ -1,21 +1,18 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import useValidUser from '@/hooks/useValidUser';
+import { Input } from '@/components/Input/Input';
 import { login } from '../redux/auth.actions';
 import { loginSchema } from '@/utils/schemas';
 import { FormControl, Label } from '@/components/Input';
 
 export function LoginForm() {
-  const [type, setType] = useState('password');
-  const [icon, setIcon] = useState(FaEyeSlash);
-
   const { loading, userInfo, error } = useSelector((state) => state.auth);
 
   const [searchParams] = useSearchParams();
@@ -39,16 +36,6 @@ export function LoginForm() {
     dispatch(login(data));
   };
 
-  const handleToogle = () => {
-    if (type === 'password') {
-      setIcon(FaEye);
-      setType('text');
-    } else {
-      setIcon(FaEyeSlash);
-      setType('password');
-    }
-  };
-
   useEffect(() => {
     if (isValidUser) {
       navigate('/');
@@ -65,7 +52,7 @@ export function LoginForm() {
   }, [userInfo]);
 
   return (
-    <>
+    <div>
       <Link to="/">
         <h1 className="font-bold text-2xl">Login</h1>
       </Link>
@@ -78,14 +65,12 @@ export function LoginForm() {
         </p>
       ) : null}
 
-      <form className="flex flex-col w-80" onSubmit={handleSubmit(handleLogin)}>
+      <form onSubmit={handleSubmit(handleLogin)}>
         <FormControl>
           <Label>Email</Label>
-          <input
+          <Input
             type="email"
-            className={`border focus:outline-0 rounded-md px-9 h-10 placeholder:text-sm ${
-              errors.email ? 'input-error' : 'input border-brand'
-            }`}
+            className={`${errors.email ? 'input-error' : 'input border-brand'} w-72`}
             placeholder="Enter your Email"
             {...register('email', { required: true })}
           />
@@ -97,17 +82,12 @@ export function LoginForm() {
         <FormControl>
           <Label>Password</Label>
           <div className="flex flex-wrap">
-            <input
-              type={type}
-              className={`w-full h-10 border focus:outline-0 px-9 rounded-md placeholder:text-sm ${
-                errors.password ? 'input-error' : 'input border-brand'
-              }`}
+            <Input
+              type="password"
+              className={`${errors.password ? 'input-error' : 'input border-brand'} w-72`}
               placeholder="Enter your Password"
               {...register('password', { required: true })}
             />
-            <button className="absolute my-3 ml-72  " type="button" onClick={handleToogle}>
-              {icon}
-            </button>
           </div>
         </FormControl>
 
@@ -116,28 +96,22 @@ export function LoginForm() {
             {errors.password?.message}
           </small>
 
-          <button
-            className="text-xs ml-auto mt-1 text-brand"
-            type="button"
-            onClick={() => navigate('/auth/forgot-password')}
-          >
-            Forgot Password
-          </button>
+          <Link className="link" to="/auth/forgot-password">
+            Forgot Password?
+          </Link>
         </div>
 
-        <button className="btn btn-primary bg-brand mt-4" disabled={loading} type="submit">
+        <button className="btn btn-primary bg-brand mt-4 w-full" disabled={loading} type="submit">
           {loading ? 'Logging in' : 'Login'}
         </button>
 
-        <div className=" text-sm text-center mt-5">
+        <p className="mt-2">
           Don&apos;t have an account?{' '}
-          <Link to="/auth/register">
-            <button className="text-sm mt-2 text-brand" type="button">
-              Register
-            </button>{' '}
+          <Link className="link" to="/auth/register">
+            Register
           </Link>
-        </div>
+        </p>
       </form>
-    </>
+    </div>
   );
 }
