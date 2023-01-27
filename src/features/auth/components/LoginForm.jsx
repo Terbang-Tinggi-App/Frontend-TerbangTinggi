@@ -7,10 +7,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import useValidUser from '@/hooks/useValidUser';
-import { Input } from '@/components/Input/Input';
 import { login } from '../redux/auth.actions';
 import { loginSchema } from '@/utils/schemas';
-import { FormControl, Label } from '@/components/Input';
+import { FormControl, Input, Label } from '@/components/Input';
 
 export function LoginForm() {
   const { loading, userInfo, error } = useSelector((state) => state.auth);
@@ -52,7 +51,7 @@ export function LoginForm() {
   }, [userInfo]);
 
   return (
-    <div>
+    <div className="min-w-[300px]">
       <Link to="/">
         <h1 className="font-bold text-2xl">Login</h1>
       </Link>
@@ -70,32 +69,23 @@ export function LoginForm() {
           <Label>Email</Label>
           <Input
             type="email"
-            className={`${errors.email ? 'input-error' : 'input border-brand'} w-72`}
             placeholder="Enter your Email"
             {...register('email', { required: true })}
+            error={errors.email?.message}
           />
-          <small className={`text-error mt-1 ${errors.email ? 'block' : 'invisible'}`}>
-            {errors.email?.message}
-          </small>
         </FormControl>
 
         <FormControl>
           <Label>Password</Label>
-          <div className="flex flex-wrap">
-            <Input
-              type="password"
-              className={`${errors.password ? 'input-error' : 'input border-brand'} w-72`}
-              placeholder="Enter your Password"
-              {...register('password', { required: true })}
-            />
-          </div>
+          <Input
+            type="password"
+            placeholder="Enter your Password"
+            {...register('password', { required: true })}
+            error={errors.password?.message}
+          />
         </FormControl>
 
-        <div className="flex justify-between">
-          <small className={`text-error mt-1 ${errors.password ? 'block' : 'invisible'}`}>
-            {errors.password?.message}
-          </small>
-
+        <div className="flex justify-end">
           <Link className="link" to="/auth/forgot-password">
             Forgot Password?
           </Link>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -9,11 +9,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import useValidUser from '@/hooks/useValidUser';
 import { registerUser } from '../redux/auth.actions';
 import { registerSchema } from '@/utils/schemas';
+import { Input, Label, FormControl } from '../../../components/Input';
 
 export function RegisterForm() {
-  const [passwordEye, setPasswordEye] = useState(false);
-  const [confirmPasswordEye, setConfirmPasswordEye] = useState(false);
-
   const { loading, error, success } = useSelector((state) => state.auth);
 
   const {
@@ -25,13 +23,6 @@ export function RegisterForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isValidUser = useValidUser();
-
-  const handleToogle = () => {
-    setPasswordEye(!passwordEye);
-  };
-  const handleConfirmToogle = () => {
-    setConfirmPasswordEye(!confirmPasswordEye);
-  };
 
   useEffect(() => {
     if (isValidUser) {
@@ -69,86 +60,53 @@ export function RegisterForm() {
       ) : null}
 
       <form className="flex flex-col w-80" onSubmit={handleSubmit(handleRegister)}>
-        <div className="mt-2">Username</div>
-        <input
-          type="text"
-          className={`focus:outline-0 border border-brand px-9 rounded-md pl-5 h-10 placeholder:text-sm ${
-            errors.username && 'border-error'
-          }`}
-          placeholder="Enter your Username"
-          {...register('username', { required: true })}
-        />
-        <small className={`text-error mt-1 ${errors.username ? 'block' : 'invisible'}`}>
-          {errors.username?.message}
-        </small>
+        <FormControl>
+          <Label>Username</Label>
+          <Input
+            type="text"
+            placeholder="Enter your Username"
+            {...register('username', { required: true })}
+            error={errors.username?.message}
+          />
+        </FormControl>
 
-        <div className="mt-2">Email</div>
-        <input
-          type="email"
-          className={`focus:outline-0 border  border-brand px-9 rounded-md h-10 pl-5 placeholder:text-sm ${
-            errors.email && 'border-error'
-          }`}
-          placeholder="Enter your Email"
-          {...register('email', { required: true })}
-        />
-        <small className={`text-error mt-1 ${errors.email ? 'block' : 'invisible'}`}>
-          {errors.email?.message}
-        </small>
+        <FormControl>
+          <Label>Email</Label>
+          <Input
+            type="email"
+            placeholder="Enter your Email"
+            {...register('email', { required: true })}
+            error={errors.email?.message}
+          />
+        </FormControl>
 
-        <div className="mt-2">Password</div>
-        <div className="flex">
-          <input
-            className={`w-full focus:outline-0 border px-9 border-brand h-10 pl-5 rounded-md placeholder:text-sm ${
-              errors.password && 'border-error'
-            }`}
-            type={passwordEye === false ? 'password' : 'text'}
+        <FormControl>
+          <Label>Password</Label>
+          <Input
+            type="password"
             placeholder="Enter your Password"
             {...register('password', { required: true })}
+            error={errors.password?.message}
           />
-          <span className="absolute ml-72 my-3">
-            {passwordEye === false ? (
-              <FaEyeSlash onClick={handleToogle} />
-            ) : (
-              <FaEye onClick={handleToogle} />
-            )}
-          </span>
-        </div>
-        <small className={`text-error mt-1 ${errors.password ? 'block' : 'invisible'}`}>
-          {errors.password?.message}
-        </small>
+        </FormControl>
 
-        <div className="mt-2">Password Confirmation</div>
-        <div className="flex">
-          <input
-            className={`w-full focus:outline-0 border border-brand px-9 pl-5 rounded-md h-10 placeholder:text-sm ${
-              errors.confirmPassword && 'border-error'
-            }`}
-            type={confirmPasswordEye === false ? 'password' : 'text'}
+        <FormControl>
+          <Label>Password Confirmation</Label>
+          <Input
+            type="password"
             {...register('confirmPassword', { required: true })}
             placeholder="Enter your Password Confirmation"
+            error={errors.confirmPassword?.message}
           />
-          <span className="absolute ml-72 my-3">
-            {confirmPasswordEye === false ? (
-              <FaEyeSlash onClick={handleConfirmToogle} />
-            ) : (
-              <FaEye onClick={handleConfirmToogle} />
-            )}
-          </span>
-        </div>
-        <small className={`text-error mt-1 ${errors.confirmPassword ? 'block' : 'invisible'}`}>
-          {errors.confirmPassword?.message}
-        </small>
+        </FormControl>
 
-        <button
-          className="bg-brand rounded-md mt-5 text-white text-sm h-8 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
-          disabled={loading}
-          type="submit">
+        <button className="btn btn-primary bg-brand mt-4" disabled={loading} type="submit">
           {loading ? 'Registering' : 'Register'}
         </button>
 
         {/* <Googlelogin type="Register" /> */}
 
-        <div className=" text-sm text-center mt-3">
+        <div className="text-sm text-center mt-3">
           Already Have An Account?{' '}
           <Link to="/auth/login">
             <button className="mt-2 text-brand" type="button">
