@@ -2,7 +2,7 @@
 import * as yup from 'yup';
 
 export const loginSchema = yup.object({
-  email: yup.string().email().required('No email provided'),
+  email: yup.string().email().required('No email provided').nullable(),
   password: yup.string().required('No password provided').min(3, 'Password min 6 chars')
 });
 
