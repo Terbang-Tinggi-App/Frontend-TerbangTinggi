@@ -1,5 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import Logo from '@/components/Icons/Logo';
 
 export function Layout({ children }) {
-  return <div className="flex h-screen justify-center items-center">{children}</div>;
+  return (
+    <>
+      <header className="shadow-sm h-20 flex items-center px-4 md:px-20">
+        <Link to="/" className="font-bold text-xl flex items-center gap-2">
+          <Logo />
+        </Link>
+      </header>
+      <main className="flex min-h-screen justify-center mt-8">{children}</main>
+    </>
+  );
 }

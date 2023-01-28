@@ -1,14 +1,14 @@
 import React from 'react';
 
-function Logo({ size }) {
+function Logo({ size, className }) {
   return (
     <svg
+      className={className}
       width={size ?? 40}
       height={size ?? 40}
       viewBox="0 0 48 48"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_55_12)">
         <circle cx="24" cy="24" r="24" fill="#512BD4" />
         <path

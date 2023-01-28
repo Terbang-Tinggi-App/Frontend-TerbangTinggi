@@ -12,14 +12,12 @@ function ErrorFallback() {
   return (
     <div
       className="text-red-500 w-screen h-screen flex flex-col justify-center items-center"
-      role="alert"
-    >
+      role="alert">
       <h2 className="text-lg font-semibold">Ooops, something went wrong :( </h2>
       <button
         className="mt-4"
         onClick={() => window.location.assign(window.location.origin)}
-        type="button"
-      >
+        type="button">
         Refresh
       </button>
     </div>
@@ -33,7 +31,7 @@ export function AppProvider({ children }) {
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           <Router>{children}</Router>
         </GoogleOAuthProvider>
-        <ToastContainer autoClose={500} />
+        <ToastContainer autoClose={500} position="bottom-right" />
       </ErrorBoundary>
     </Suspense>
   );

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -9,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import useValidUser from '@/hooks/useValidUser';
 import { registerUser } from '../redux/auth.actions';
 import { registerSchema } from '@/utils/schemas';
-import { Input, Label, FormControl } from '../../../components/Input';
+import { Input, Label, FormControl, ErrorCard } from '@/components/Input';
 
 export function RegisterForm() {
   const { loading, error, success } = useSelector((state) => state.auth);
@@ -46,20 +45,14 @@ export function RegisterForm() {
   };
 
   return (
-    <div>
-      <Link to="/">
-        <h1 className="font-bold text-2xl">Register</h1>
-      </Link>
+    <div className="min-w-[300px]">
+      <h1 className="font-bold text-4xl">Register</h1>
 
-      <p className="text-sm mt-2">Get Started! Please enter your details</p>
+      <p className="mt-3 mb-2">Welcome, Please enter your details 🙏</p>
 
-      {error ? (
-        <p className="bg-red-300 p-3 mt-2 rounded-[4px] text-red-700 font-semibold w-80 text-center">
-          {typeof error === 'string' ? error : JSON.stringify(error)}
-        </p>
-      ) : null}
+      <ErrorCard error={error} />
 
-      <form className="flex flex-col w-80" onSubmit={handleSubmit(handleRegister)}>
+      <form onSubmit={handleSubmit(handleRegister)}>
         <FormControl>
           <Label>Username</Label>
           <Input
@@ -100,18 +93,14 @@ export function RegisterForm() {
           />
         </FormControl>
 
-        <button className="btn btn-primary bg-brand mt-4" disabled={loading} type="submit">
+        <button className="btn btn-primary bg-brand mt-4 w-full" disabled={loading} type="submit">
           {loading ? 'Registering' : 'Register'}
         </button>
 
-        {/* <Googlelogin type="Register" /> */}
-
         <div className="text-sm text-center mt-3">
-          Already Have An Account?{' '}
-          <Link to="/auth/login">
-            <button className="mt-2 text-brand" type="button">
-              Login
-            </button>
+          Already have an account?{' '}
+          <Link className="link" to="/auth/login">
+            Login
           </Link>
         </div>
       </form>

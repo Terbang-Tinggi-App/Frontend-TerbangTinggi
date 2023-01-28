@@ -8,3 +8,4 @@ export * from './FormControl';
 export * from './TripTypeSelect';
 export * from './Input';
 export * from './SeatClassSelect';
+export * from './ErrorCard';

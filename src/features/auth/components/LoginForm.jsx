@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -9,9 +9,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import useValidUser from '@/hooks/useValidUser';
 import { login } from '../redux/auth.actions';
 import { loginSchema } from '@/utils/schemas';
-import { FormControl, Input, Label } from '@/components/Input';
+import { FormControl, Input, Label, ErrorCard } from '@/components/Input';
+import GoogleLogin from './Googlelogin';
 
 export function LoginForm() {
+  const userEmailLocalStorage = localStorage.getItem('userEmail');
+
+  const [rememberMe, setRememberMe] = useState(Boolean(userEmailLocalStorage));
+
   const { loading, userInfo, error } = useSelector((state) => state.auth);
 
   const [searchParams] = useSearchParams();
@@ -32,6 +37,11 @@ export function LoginForm() {
   const isValidUser = useValidUser();
 
   const handleLogin = (data) => {
+    if (rememberMe) {
+      localStorage.setItem('userEmail', data.email);
+    } else {
+      localStorage.removeItem('userEmail');
+    }
     dispatch(login(data));
   };
 
@@ -52,17 +62,16 @@ export function LoginForm() {
 
   return (
     <div className="min-w-[300px]">
-      <Link to="/">
-        <h1 className="font-bold text-2xl">Login</h1>
-      </Link>
+      <h1 className="font-bold text-4xl">Login</h1>
 
-      <p className="text-sm mt-5">Welcome back! Please enter your details</p>
+      <p className="mt-3 mb-[26px]">Hi, Welcome back 👋</p>
 
-      {error ? (
-        <p className="bg-red-300 p-3 mt-2 rounded-[4px] text-red-700 font-semibold w-80 text-center">
-          {typeof error === 'string' ? error : JSON.stringify(error)}
-        </p>
-      ) : null}
+      <ErrorCard error={error} />
+      <GoogleLogin />
+
+      <div className="my-3 text-center">
+        <p>or Login with Email</p>
+      </div>
 
       <form onSubmit={handleSubmit(handleLogin)}>
         <FormControl>
@@ -70,7 +79,7 @@ export function LoginForm() {
           <Input
             type="email"
             placeholder="Enter your Email"
-            {...register('email', { required: true })}
+            {...register('email', { required: true, value: userEmailLocalStorage })}
             error={errors.email?.message}
           />
         </FormControl>
@@ -85,7 +94,19 @@ export function LoginForm() {
           />
         </FormControl>
 
-        <div className="flex justify-end">
+        <div className="flex justify-between items-center">
+          <FormControl>
+            <label className="label cursor-pointer">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
+              <span className="ml-1">Remember Me</span>
+            </label>
+          </FormControl>
+
           <Link className="link" to="/auth/forgot-password">
             Forgot Password?
           </Link>
@@ -95,7 +116,7 @@ export function LoginForm() {
           {loading ? 'Logging in' : 'Login'}
         </button>
 
-        <p className="mt-2">
+        <p className="mt-2 text-center">
           Don&apos;t have an account?{' '}
           <Link className="link" to="/auth/register">
             Register

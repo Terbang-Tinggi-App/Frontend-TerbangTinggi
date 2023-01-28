@@ -13,7 +13,9 @@ export const Input = React.forwardRef((props, ref) => {
     <>
       <input
         ref={ref}
-        className={`input  ${error ? 'input-error' : `input-primary`} ${className} max-w-sm`}
+        className={`input rounded-[4px] h-11 ${
+          error ? 'input-error' : `input-primary`
+        } ${className} max-w-sm`}
         {...rest}
       />
       <small className="text-error block mt-1">{error}</small>
