@@ -1,26 +1,14 @@
 import { useSelector } from 'react-redux';
 
 /**
- * This hook is getting user data from localStorage and Redux Store,
+ * This hook is getting user data from Redux Store,
  * and check if their data is exists in there
  * @returns {Boolean}
  */
 const useValidUser = () => {
-  const lsToken = localStorage.getItem('token');
-  const user = localStorage.getItem('user');
+  const { userToken, userInfo } = useSelector((state) => state.auth);
 
-  const { username: lsName, email: lsEmail, role: lsRole } = JSON.parse(user) ?? {};
-  const { token, name, email, role } = useSelector((state) => state.user);
-
-  const isValidUser =
-    Boolean(lsToken) &&
-    Boolean(lsName) &&
-    Boolean(lsEmail) &&
-    Boolean(lsRole) &&
-    Boolean(token) &&
-    Boolean(name) &&
-    Boolean(email) &&
-    Boolean(role);
+  const isValidUser = Boolean(userInfo) && Boolean(userToken);
 
   return isValidUser;
 };

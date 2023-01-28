@@ -53,7 +53,6 @@ export function LoginForm() {
     if (userInfo) {
       toast('Logged in', {
         autoClose: 1000,
-        position: 'bottom-right',
         type: 'success'
       });
       navigate('/');

@@ -38,7 +38,7 @@ export function RegisterForm() {
       });
       navigate('/login');
     }
-  }, [success]);
+  }, [success, isValidUser]);
 
   const handleRegister = (data) => {
     dispatch(registerUser(data));
@@ -97,7 +97,7 @@ export function RegisterForm() {
           {loading ? 'Registering' : 'Register'}
         </button>
 
-        <div className="text-sm text-center mt-3">
+        <div className="text-center mt-3">
           Already have an account?{' '}
           <Link className="link" to="/auth/login">
             Login

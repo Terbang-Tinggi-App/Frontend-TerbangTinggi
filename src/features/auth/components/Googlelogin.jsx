@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-// eslint-disable-next-line import/extensions
-import { loginGoogle } from '@/redux/user/user.actions.js';
+import { loginGoogle } from '../redux/auth.actions';
 
 export default function Googlelogin({ type }) {
   const dispatch = useDispatch();

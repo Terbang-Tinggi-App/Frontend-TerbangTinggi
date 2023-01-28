@@ -9,7 +9,7 @@ import { IoWarningOutline } from 'react-icons/io5';
 
 import { BASE_API_URL } from '../../config';
 import useValidUser from '../../hooks/useValidUser';
-import { logout } from '../../redux/user/user.slice';
+import { logout } from '../../features/auth/redux/auth.slice';
 import Logo from '../Icons/Logo';
 import CustomModal from '../Modal/CustomModal';
 import { getTransactionsData } from '../../redux/transactions/transactions.slice';
