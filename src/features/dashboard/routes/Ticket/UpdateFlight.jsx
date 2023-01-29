@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Dashboard } from '../../../components/Layout';
-import {
-  AirlineSelect,
-  FormControl,
-  Input,
-  Label,
-  SeatClassSelect
-} from '../../../components/Input';
-import { VStack } from '../../../components/Container';
-import Spinner from '../../../components/Layout/Spinner';
+import { BASE_API_URL } from '@/config';
+import { Dashboard } from '@/components/Layout';
+import { AirlineSelect, FormControl, Input, Label, SeatClassSelect } from '@/components/Input';
+import { VStack } from '@/components/Container';
+import Spinner from '@/components/Layout/Spinner';
 
-const API_URL = import.meta.env.VITE_BASE_URL;
-
-export default function UpdateTicket() {
+export function UpdateFlight() {
   const [data, setData] = useState(null);
   const [airline, setAirline] = useState(
     JSON.stringify({ name: data?.airlineName, iata: data?.airlineIata })
@@ -39,7 +32,7 @@ export default function UpdateTicket() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `${API_URL}/flight/data/${id}`,
+        `${BASE_API_URL}/flight/data/${id}`,
         {
           ...data,
           airlineName: airlineParsed.name,
@@ -58,7 +51,7 @@ export default function UpdateTicket() {
 
       if (status === 201 || status === 200) {
         toast('Flight successfully updated', { type: 'success' });
-        navigate('/flights');
+        navigate('/dashboard/flights');
       }
     } catch (err) {
       toast(err.message, { type: 'error' });
@@ -68,7 +61,7 @@ export default function UpdateTicket() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get(`${API_URL}/flight/data/${id}`, {
+        const res = await axios.get(`${BASE_API_URL}/flight/data/${id}`, {
           headers: {
             Authorization: localStorage.getItem('token')
           }
@@ -240,17 +233,15 @@ export default function UpdateTicket() {
                   <button
                     type="button"
                     className="btn btn-primary w-32"
-                    onClick={handleUpdateTicket}
-                  >
+                    onClick={handleUpdateTicket}>
                     Update
                   </button>
                   <button
                     type="button"
                     className="btn btn-primary btn-outline w-32"
                     onClick={() => {
-                      navigate('/flights');
-                    }}
-                  >
+                      navigate('/dashboard/flights');
+                    }}>
                     Cancel
                   </button>
                 </div>

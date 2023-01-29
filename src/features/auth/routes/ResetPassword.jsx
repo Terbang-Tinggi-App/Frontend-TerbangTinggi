@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 
-import { Button } from '../../../components/Input';
-import { ForgotResetLayout } from '../components/ForgotResetLayout';
-import Logo from '../../../components/Icons/Logo';
-import { resetPasswordSchema } from '../../../utils/schemas';
+import { Button } from '@/components/Input';
+import { ForgotResetLayout } from '../components/Layout';
+import Logo from '@/components/Icons/Logo';
+import { resetPasswordSchema } from '@/utils/schemas';
 
 export function ResetPassword() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -83,8 +83,7 @@ export function ResetPassword() {
           </h2>
           <form
             className="mt-4 space-y-4 lg:mt-5 md:space-y-5"
-            onSubmit={handleSubmit(handleResetPassword)}
-          >
+            onSubmit={handleSubmit(handleResetPassword)}>
             <div>
               <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
                 New Password
@@ -104,8 +103,7 @@ export function ResetPassword() {
                   tabIndex={-1}
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  title="Show password"
-                >
+                  title="Show password">
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </button>
               </div>
@@ -133,8 +131,7 @@ export function ResetPassword() {
 
             <Button
               type="submit"
-              disabled={errors.confirmPassword || errors.newPassword || isSubmitting}
-            >
+              disabled={errors.confirmPassword || errors.newPassword || isSubmitting}>
               {isSubmitting ? 'Resetting' : 'Reset password'}
             </Button>
           </form>

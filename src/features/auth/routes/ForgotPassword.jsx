@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import useValidUser from '../../../hooks/useValidUser';
-import { Button } from '../../../components/Input';
-import Logo from '../../../components/Icons/Logo';
-import { ForgotResetLayout } from '../components/ForgotResetLayout';
-import { EMAIL } from '../../../utils/regex';
+import useValidUser from '@/hooks/useValidUser';
+import { Button } from '@/components/Input';
+import Logo from '@/components/Icons/Logo';
+import { ForgotResetLayout } from '../components/Layout';
+import { EMAIL } from '@/utils/regex';
 
 export function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -89,8 +89,7 @@ export function ForgotPassword() {
               <div>
                 <label
                   htmlFor="emailAddress"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
+                  className="block mb-2 text-sm font-medium text-gray-900">
                   Your email
                 </label>
                 <input
@@ -110,8 +109,7 @@ export function ForgotPassword() {
               <Button
                 type="submit"
                 onClick={handleSubmit}
-                disabled={!email || !EMAIL.test(email) || isSubmitting}
-              >
+                disabled={!email || !EMAIL.test(email) || isSubmitting}>
                 {isSubmitting ? 'Submitting' : 'Send Email'}
               </Button>
             </form>

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { TbLogout, TbUser, TbHistory } from 'react-icons/tb';
 import { IoWarningOutline } from 'react-icons/io5';
+import { RxDashboard } from 'react-icons/rx';
 
 import { BASE_API_URL } from '../../config';
 import useValidUser from '../../hooks/useValidUser';
@@ -20,7 +21,8 @@ function Navbar() {
   const [modalOpen, setModalOpen] = useState(false);
   const [notif, setNotif] = useState([]);
 
-  const { name, role } = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.auth);
+  const { username: name, role } = userInfo ?? {};
   const { unpaid } = useSelector((state) => state.transactions);
 
   const unreadNotif = notif.filter((x) => !x.is_read);
@@ -251,7 +253,7 @@ export function AuthRightElementNavbar({
             </div>
           </button>
         </Link>
-        <Link to="/notifications">
+        <Link to="user/notifications">
           <button className="btn btn-ghost btn-square" type="button">
             <div className="indicator">
               <svg
@@ -289,7 +291,9 @@ export function AuthRightElementNavbar({
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           {isAdmin ? (
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/dashboard">
+                <RxDashboard /> Dashboard
+              </Link>
             </li>
           ) : null}
           <li>
@@ -300,7 +304,7 @@ export function AuthRightElementNavbar({
             ) : null}
           </li>
           <li>
-            <Link to="/transaction">
+            <Link to="user/transactions">
               <TbHistory /> Transactions
             </Link>
           </li>

@@ -1,6 +1,19 @@
 import React from 'react';
-import { Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-export function UserRoutes() {
-  return <Routes>{/* Route goes here */}</Routes>;
+import { Account } from './Account';
+import { Notifications } from './Notifications';
+import { DetailTransaction } from './DetailTransaction';
+import { Transaction } from './Transaction';
+
+export function UsersRoutes() {
+  return (
+    <Routes>
+      <Route path="account" element={<Account />} />
+      <Route path="notifications" element={<Notifications />} />
+      <Route path="*" element={<Navigate to="account" />} />
+      <Route path="/transactions" element={<Transaction />} />
+      <Route path="/transactions/:id" element={<DetailTransaction />} />
+    </Routes>
+  );
 }

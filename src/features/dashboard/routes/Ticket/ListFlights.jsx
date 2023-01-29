@@ -6,16 +6,16 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { IoWarningOutline } from 'react-icons/io5';
 
-import { Dashboard } from '../../../components/Layout';
-import { setTicketData, resetData, getAllTickets } from '../../../redux/ticket/ticket.actions';
-import TableSkeleton from '../../../components/Layout/Skeleton';
-import CustomModal from '../../../components/Modal/CustomModal';
-import Spinner from '../../../components/Layout/Spinner';
-import { FormControl, Label } from '../../../components/Input';
+import { BASE_API_URL } from '@/config';
+import { Dashboard } from '@/components/Layout';
+// eslint-disable-next-line import/extensions
+import { setTicketData, resetData, getAllTickets } from '@/redux/ticket/ticket.actions.js';
+import TableSkeleton from '@/components/Layout/Skeleton';
+import CustomModal from '@/components/Modal/CustomModal';
+import Spinner from '@/components/Layout/Spinner';
+import { FormControl, Label } from '@/components/Input';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-function ListTicket() {
+export function ListFlights() {
   const [refetch, setRefetch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentTicket, setCurrentTicket] = useState({});
@@ -59,7 +59,7 @@ function ListTicket() {
 
   const handleDeleteTicket = async (id) => {
     try {
-      const { status } = await axios.delete(`${BASE_URL}/flight/data/${id}`, {
+      const { status } = await axios.delete(`${BASE_API_URL}/flight/data/${id}`, {
         headers: { Authorization: localStorage.getItem('token') }
       });
       if (status === 200 || status === 201) {
@@ -94,10 +94,10 @@ function ListTicket() {
     return (
       <Dashboard>
         <section className="min-h-screen">
-          <h1 className="text-2xl mb-4">List of all available tickets</h1>
+          <h1 className="text-2xl mb-4">List of all available flights</h1>
           <p>
             {error}, create one{' '}
-            <Link className="underline" to="/create-ticket">
+            <Link className="underline" to="/dashboard/flights/add">
               here
             </Link>
           </p>
@@ -135,8 +135,7 @@ function ListTicket() {
                   page: 1
                 });
               }}
-              className="select select-bordered select-sm"
-            >
+              className="select select-bordered select-sm">
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -204,10 +203,9 @@ function ListTicket() {
                                   price: ticket.price
                                 })
                               );
-                              navigate(`/flights/${ticket.id}`);
+                              navigate(`/dashboard/flights/${ticket.id}`);
                             }}
-                            type="button"
-                          >
+                            type="button">
                             Update
                           </button>
                           <button
@@ -216,8 +214,7 @@ function ListTicket() {
                               openModal();
                               setCurrentTicket(ticket);
                             }}
-                            type="button"
-                          >
+                            type="button">
                             Delete
                           </button>
                         </td>
@@ -236,8 +233,7 @@ function ListTicket() {
                   type="button"
                   className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
                   disabled={page <= 1}
-                  onClick={handleDecrementPage}
-                >
+                  onClick={handleDecrementPage}>
                   Prev
                 </button>
                 <button
@@ -246,16 +242,14 @@ function ListTicket() {
                     !Number(page <= 1) || !Number(page - 1) <= 1 ? 'hidden' : 'block'
                   }`}
                   disabled={page <= 1}
-                  onClick={handleDecrementPage}
-                >
+                  onClick={handleDecrementPage}>
                   1l
                 </button>
                 <button
                   type="button"
                   className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
                   disabled={page <= 1}
-                  onClick={handleDecrementPage}
-                >
+                  onClick={handleDecrementPage}>
                   {page - 1}
                 </button>
                 <button type="button" className="btn btn-active">
@@ -265,8 +259,7 @@ function ListTicket() {
                   type="button"
                   className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
                   disabled={page >= totalPages}
-                  onClick={handleIncrementPage}
-                >
+                  onClick={handleIncrementPage}>
                   {Number(page) + 1}
                 </button>
                 <button
@@ -277,16 +270,14 @@ function ListTicket() {
                       : 'block'
                   }`}
                   disabled={page >= totalPages}
-                  onClick={() => handleAmountPage(Number(totalPages))}
-                >
+                  onClick={() => handleAmountPage(Number(totalPages))}>
                   {totalPages}
                 </button>
                 <button
                   type="button"
                   className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
                   disabled={page >= totalPages}
-                  onClick={handleIncrementPage}
-                >
+                  onClick={handleIncrementPage}>
                   Next
                 </button>
               </div>
@@ -317,8 +308,7 @@ function ListTicket() {
                 handleDeleteTicket(currentTicket.id);
                 closeModal();
               }}
-              type="button"
-            >
+              type="button">
               Delete
             </button>
           </div>
@@ -327,5 +317,3 @@ function ListTicket() {
     </Dashboard>
   );
 }
-
-export default ListTicket;

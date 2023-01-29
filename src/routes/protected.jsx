@@ -3,6 +3,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { Layout } from '../components/Layout';
 import Spinner from '../components/Layout/Spinner';
+import { UsersRoutes } from '../features/users';
+import { DashboardRoutes } from '../features/dashboard';
+import { Home } from '../features/common';
 
 function App() {
   return (
@@ -14,10 +17,26 @@ function App() {
   );
 }
 
+export function Dashboard() {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <Outlet />
+    </Suspense>
+  );
+}
+
 export const protectedRoutes = [
   {
     path: '/',
     element: <App />,
-    children: [{ path: '*', element: <Navigate to="." /> }]
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/user/*', element: <UsersRoutes /> },
+      { path: '*', element: <Navigate to="." /> }
+    ]
+  },
+  {
+    path: '/dashboard/*',
+    element: <DashboardRoutes />
   }
 ];

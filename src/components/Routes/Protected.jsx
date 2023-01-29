@@ -7,7 +7,8 @@ import useValidUser from '../../hooks/useValidUser';
 function Protected({ children, access }) {
   const isValidUser = useValidUser();
 
-  const { role } = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.auth);
+  const { role } = userInfo;
 
   if (!isValidUser) {
     return <Navigate to="/login" />;

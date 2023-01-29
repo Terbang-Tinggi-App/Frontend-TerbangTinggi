@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-import { Dashboard } from '../../../components/Layout';
+import { Dashboard } from '@/components/Layout';
 import {
   AirlineSelect,
   AirportSelect,
@@ -12,9 +12,9 @@ import {
   Label,
   SeatClassSelect,
   TripTypeSelect
-} from '../../../components/Input';
-import { VStack } from '../../../components/Container';
-import { today } from '../../../utils/dates';
+} from '@/components/Input';
+import { VStack } from '@/components/Container';
+import { today } from '@/utils/dates';
 
 const initialData = {
   code: '',
@@ -30,7 +30,7 @@ const initialData = {
   price: +''
 };
 
-export default function CreateTicket() {
+export function CreateFlight() {
   const [data, setData] = useState(initialData);
   const [departure, setDeparture] = useState(null);
   const [arrival, setArrival] = useState(null);
@@ -255,8 +255,7 @@ export default function CreateTicket() {
                 <button
                   type="button"
                   className="btn btn-primary btn-outline w-32"
-                  onClick={() => navigate('/flights')}
-                >
+                  onClick={() => navigate('/dashboard/flights')}>
                   Cancel
                 </button>
               </div>

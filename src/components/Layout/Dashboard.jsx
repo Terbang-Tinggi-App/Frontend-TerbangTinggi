@@ -9,12 +9,13 @@ import useValidUser from '../../hooks/useValidUser';
 import Protected from '../Routes/Protected';
 import Logo from '../Icons/Logo';
 import CustomModal from '../Modal/CustomModal';
-import { logout } from '../../redux/user/user.slice';
+import { logout } from '../../features/auth/redux/auth.slice';
 
 export function Dashboard({ children }) {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { name } = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.auth);
+  const { username: name } = userInfo ?? {};
 
   const isValidUser = useValidUser();
   const dispatch = useDispatch();
@@ -44,8 +45,7 @@ export function Dashboard({ children }) {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  className="inline-block w-6 h-6 stroke-current"
-                >
+                  className="inline-block w-6 h-6 stroke-current">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -64,17 +64,17 @@ export function Dashboard({ children }) {
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}
                 <li>
-                  <Link to="/users">
+                  <Link to="/dashboard/users">
                     <TbUsers size={18} /> Users List
                   </Link>
                 </li>
                 <li>
-                  <Link to="/flights">
-                    <TbList size={18} /> Flights List
+                  <Link to="/dashboard/flights">
+                    <TbList size={18} /> List Flights
                   </Link>
                 </li>
                 <li>
-                  <Link to="/create-flight">
+                  <Link to="/dashboard/flights/add">
                     <TbPlaylistAdd size={18} /> Create Flight
                   </Link>
                 </li>
@@ -107,17 +107,17 @@ export function Dashboard({ children }) {
               </Link>
             </li>
             <li>
-              <Link to="/users">
+              <Link to="/dashboard/users">
                 <TbUsers size={18} /> Users List
               </Link>
             </li>
             <li>
-              <Link to="/flights">
+              <Link to="/dashboard/flights">
                 <TbList size={18} /> Flights List
               </Link>
             </li>
             <li>
-              <Link to="/create-flight">
+              <Link to="/dashboard/flights/add">
                 <TbPlaylistAdd size={18} /> Create Flight
               </Link>
             </li>
@@ -135,14 +135,12 @@ export function AuthRightElementNavbar({ handleLogout, username, openModal, isOp
         <label
           tabIndex={0}
           className="btn btn-outline btn-primary btn-sm btn-circle avatar placeholder"
-          title="Profile Menu"
-        >
+          title="Profile Menu">
           {username ? <span>{username[0].toUpperCase()}</span> : <span>TT</span>}
         </label>
         <ul
           tabIndex={0}
-          className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-        >
+          className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li>
             <Link to="/dashboard">
               <TbHome /> Back to Home
@@ -157,16 +155,14 @@ export function AuthRightElementNavbar({ handleLogout, username, openModal, isOp
               isOpen={isOpen}
               closeModal={closeModal}
               className="max-w-xs"
-              label="Logout warning"
-            >
+              label="Logout warning">
               <IoWarningOutline className="mb-2" size={32} />
               <h2 className="text-lg font-semibold">Are you sure you want to logout?</h2>
               <div className="flex gap-4 mt-4 justify-between">
                 <button
                   type="button"
                   className="btn btn-primary btn-outline w-28 sm:w-32"
-                  onClick={closeModal}
-                >
+                  onClick={closeModal}>
                   Cancel
                 </button>
                 <button type="button" className="btn btn-error w-28 sm:w-32" onClick={handleLogout}>
