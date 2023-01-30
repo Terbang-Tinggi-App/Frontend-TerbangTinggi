@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import { Button } from '@/components/Input';
 import { ForgotResetLayout } from '../components/Layout';
-import Logo from '@/components/Icons/Logo';
+import { Logo } from '@/components/Icons';
 import { resetPasswordSchema } from '@/utils/schemas';
 
 export function ResetPassword() {

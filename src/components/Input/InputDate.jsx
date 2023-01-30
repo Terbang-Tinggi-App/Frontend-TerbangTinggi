@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CalendarIcon from '../Icons/CalendarIcon';
+import { CalendarIcon } from '../Icons';
 
 /**
  *

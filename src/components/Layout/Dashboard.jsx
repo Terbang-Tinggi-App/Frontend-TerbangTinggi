@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { TbList, TbPlaylistAdd, TbUsers, TbLogout, TbHome } from 'react-icons/tb';
 import { IoWarningOutline } from 'react-icons/io5';
 
-import useValidUser from '../../hooks/useValidUser';
+import useValidUser from '@/hooks/useValidUser';
 import Protected from '../Routes/Protected';
-import Logo from '../Icons/Logo';
+import { Logo } from '../Icons';
 import CustomModal from '../Modal/CustomModal';
-import { logout } from '../../features/auth/redux/auth.slice';
+import { logout } from '@/features/auth/redux/auth.slice';
 
 export function Dashboard({ children }) {
   const [modalOpen, setModalOpen] = useState(false);

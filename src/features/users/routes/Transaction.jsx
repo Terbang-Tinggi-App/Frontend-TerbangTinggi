@@ -5,7 +5,7 @@ import { MdFlightTakeoff, MdOutlineFlightLand } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 import { BASE_API_URL } from '@/config';
-import CalendarIcon from '@/components/Icons/CalendarIcon';
+import { CalendarIcon } from '@/components/Icons';
 import Spinner from '@/components/Layout/Spinner';
 import Protected from '@/components/Routes/Protected';
 

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import useValidUser from '@/hooks/useValidUser';
 import { Button } from '@/components/Input';
-import Logo from '@/components/Icons/Logo';
+import { Logo } from '@/components/Icons';
 import { ForgotResetLayout } from '../components/Layout';
 import { EMAIL } from '@/utils/regex';
 

@@ -7,5 +7,3 @@ export function SeatIcon() {
     </svg>
   );
 }
-
-export default SeatIcon;
