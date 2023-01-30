@@ -22,8 +22,8 @@ export function AuthenticatedMenu({
   return (
     <div className="flex items-center justify-between gap-2">
       <div>
-        <Link to="/cart">
-          <button className="btn btn-ghost btn-square" type="button" title="Cart">
+        <Link to="/user/transactions">
+          <button className="btn btn-ghost btn-square" type="button" title="Transactions">
             <div className="indicator">
               <Cart />
               {unpaid.length > 0 ? (
@@ -34,7 +34,7 @@ export function AuthenticatedMenu({
             </div>
           </button>
         </Link>
-        <Link to="user/notifications">
+        <Link to="/user/notifications">
           <button className="btn btn-ghost btn-square" type="button">
             <div className="indicator">
               <Bell />
@@ -73,7 +73,7 @@ export function AuthenticatedMenu({
             ) : null}
           </li>
           <li>
-            <Link to="user/transactions">
+            <Link to="/user/transactions">
               <TbHistory /> Transactions
             </Link>
           </li>

@@ -7,12 +7,11 @@ import { toast } from 'react-toastify';
 import { BiUserCircle } from 'react-icons/bi';
 import { IoWarningOutline } from 'react-icons/io5';
 
-import { Button, FormControl, Label } from '../../components/Input';
-import { Layout } from '../../components/Layout';
-import TextSkeleton from '../../components/Layout/TextSkeleton';
-import CustomModal from '../../components/Modal/CustomModal';
-
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { BASE_API_URL } from '@/config';
+import { Button, FormControl, Label } from '@/components/Input';
+import { Layout } from '@/components/Layout';
+import TextSkeleton from '@/components/Layout/TextSkeleton';
+import CustomModal from '@/components/Modal/CustomModal';
 
 export function Booking() {
   const [data, setData] = useState([]);
@@ -45,7 +44,7 @@ export function Booking() {
   const handleTransaction = async () => {
     try {
       const { data: transactionData, status: transactionStatus } = await axios.post(
-        `${API_URL}/transaction`,
+        `${BASE_API_URL}/transaction`,
         {
           flight_id: Number(id),
           passenger: data
@@ -102,8 +101,12 @@ export function Booking() {
 
   useEffect(() => {
     (async () => {
-      const { data: ticketResponse } = await axios.get(`${API_URL}/flight/data/${id}`);
-      setTicketData(ticketResponse?.data);
+      try {
+        const { data: ticketResponse } = await axios.get(`${BASE_API_URL}/flight/data/${id}`);
+        setTicketData(ticketResponse?.data);
+      } catch (error) {
+        navigate('/');
+      }
     })();
   }, []);
 
@@ -225,8 +228,7 @@ export function Booking() {
                       onChange={(e) => {
                         handleChange(i, e.target.name, e.target.value);
                       }}
-                      value={data[i]?.type}
-                    >
+                      value={data[i]?.type}>
                       <option value="adult">Adult</option>
                       <option value="child">Child</option>
                     </select>
@@ -292,8 +294,7 @@ export function Booking() {
         isOpen={isOpen}
         closeModal={closeModal}
         label="example modal usage"
-        className="z-10"
-      >
+        className="z-10">
         <IoWarningOutline size="32" />
         <h1 className="font-semibold text-2xl md:text-3xl my-2 md:my-4">Proceed to payment?</h1>
         <p>

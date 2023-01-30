@@ -5,17 +5,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { MdPayment } from 'react-icons/md';
 
-import useValidUser from '../../hooks/useValidUser';
-import { Layout } from '../../components/Layout';
-import { Button } from '../../components/Input';
-import CustomModal from '../../components/Modal/CustomModal';
-import Protected from '../../components/Routes/Protected';
-import TextSkeleton from '../../components/Layout/TextSkeleton';
-import ImageSkeleton from '../../components/Layout/ImageSkeleton';
+import { BASE_API_URL } from '@/config';
+import useValidUser from '@/hooks/useValidUser';
+import { Layout } from '@/components/Layout';
+import { Button } from '@/components/Input';
+import CustomModal from '@/components/Modal/CustomModal';
+import Protected from '@/components/Routes/Protected';
+import TextSkeleton from '@/components/Layout/TextSkeleton';
+import ImageSkeleton from '@/components/Layout/ImageSkeleton';
 
-const API_URL = import.meta.env.VITE_BASE_URL;
-
-function Payment() {
+export function Payment() {
   const [ticketData, setTicketData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,7 +40,7 @@ function Payment() {
   const handlePayment = async () => {
     try {
       const { status, data } = await axios.post(
-        `${API_URL}/ticket/${paymentId}`,
+        `${BASE_API_URL}/ticket/${paymentId}`,
         {},
         {
           headers: {
@@ -54,7 +53,9 @@ function Payment() {
         toast('Payment successfull, grab your ticket now', {
           type: 'success'
         });
-        navigate(`/eticket/${paymentId}?id=${data.data.detail_transaction[0].transaction_id}`);
+        navigate(
+          `/user/transactions/${paymentId}?id=${data.data.detail_transaction[0].transaction_id}`
+        );
       }
     } catch (error) {
       toast(error.message, { type: 'error' });
@@ -71,7 +72,7 @@ function Payment() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(`${API_URL}/ticket/${paymentId}`, {
+      const { data } = await axios.get(`${BASE_API_URL}/ticket/${paymentId}`, {
         headers: {
           Authorization: localStorage.getItem('token')
         }
@@ -204,8 +205,7 @@ function Payment() {
             <div
               className={`max-w-xs ${
                 !isPaid ? 'hidden' : 'block'
-              } bg-info text-black font-bold px-4 py-2 rounded-[4px]`}
-            >
+              } bg-info text-black font-bold px-4 py-2 rounded-[4px]`}>
               Paid, get your e-ticket now
             </div>
             <CustomModal isOpen={isOpen} closeModal={closeModal} label="Payment confirmation">
@@ -232,5 +232,3 @@ function Payment() {
     </Protected>
   );
 }
-
-export default Payment;

@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { Layout } from '../components/Layout';
-import Spinner from '../components/Layout/Spinner';
-import { UsersRoutes } from '../features/users';
-import { DashboardRoutes } from '../features/dashboard';
-import { Home } from '../features/common';
+import { Layout } from '@/components/Layout';
+import Spinner from '@/components/Layout/Spinner';
+import { UsersRoutes } from '@/features/users';
+import { DashboardRoutes } from '@/features/dashboard';
+import { PaymentRoutes } from '@/features/payment';
+import { Home } from '@/features/common';
 
 function App() {
   return (
@@ -38,5 +39,9 @@ export const protectedRoutes = [
   {
     path: '/dashboard/*',
     element: <DashboardRoutes />
+  },
+  {
+    path: '/payment/*',
+    element: <PaymentRoutes />
   }
 ];
