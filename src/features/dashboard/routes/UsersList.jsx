@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import ReactPaginate from 'react-paginate';
 
-import { BASE_API_URL } from '@/config';
+import { axios } from '@/lib/axios';
 import Spinner from '@/components/Layout/Spinner';
 import { Dashboard } from '@/components/Layout';
 
@@ -14,44 +13,31 @@ export function UsersList() {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    const config = {
-      method: 'get',
-      url: `${BASE_API_URL}/admin/data/?page=${page}`,
-      headers: {
-        Authorization: localStorage.getItem('token')
+    async function getData() {
+      try {
+        const res = await axios.get(`/admin/data/?page=${page}`);
+        setUser(res.data.rows);
+        setTotalPage(res.data.totalPage);
+      } catch (error) {
+        toast(error.response.data.message);
       }
-    };
+    }
 
-    axios(config)
-      .then((resp) => {
-        setUser(resp.data.data.rows);
-
-        setTotalPage(resp.data.data.totalPage);
-      })
-      .catch((err) => {
-        toast(err.response.data.message);
-      });
+    getData();
     setRefresh(false);
   }, [page, refresh]);
 
-  const handleDelete = (id) => {
-    const config = {
-      method: 'delete',
-      url: `${BASE_API_URL}/admin/data/${id}`,
-      headers: {
-        Authorization: localStorage.getItem('token')
-      }
-    };
-
-    axios(config)
-      .then((response) => {
-        toast(response.data.message);
-        setRefresh(true);
-      })
-      .catch((error) => error);
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(`/admin/data/${id}`);
+      toast(res?.message);
+      setRefresh(true);
+    } catch (error) {
+      toast(error.message);
+    }
   };
 
-  const handlePageClick = async (val) => {
+  const handlePageClick = (val) => {
     setPage(val.selected + 1);
   };
 
@@ -71,16 +57,16 @@ export function UsersList() {
                       Email
                     </th>
                     <th scope="col" className="py-3 px-6">
-                      CreatedAt
+                      Created At
                     </th>
                     <th scope="col" className="py-3 px-6">
-                      UpdatedAt
+                      Updated At
                     </th>
                     <th scope="col" className="py-3 px-6">
-                      <span className="sr-only">delete</span>
+                      <span className="sr-only">Delete</span>
                     </th>
                     <th scope="col" className="py-3 px-6">
-                      <span className="sr-only">detail</span>
+                      <span className="sr-only">Detail</span>
                     </th>
                   </tr>
                 </thead>
@@ -99,7 +85,7 @@ export function UsersList() {
                       <td className="py-4 px-6 text-right">
                         <button
                           type="button"
-                          className="font-medium bg-red-500 px-5 py-2 rounded-lg text-white  hover:underline"
+                          className="font-medium bg-red-500 px-5 py-2 rounded-lg text-white"
                           onClick={() => {
                             handleDelete(x.id);
                           }}>

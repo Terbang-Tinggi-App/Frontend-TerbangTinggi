@@ -1,8 +1,7 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import useValidUser from '../../hooks/useValidUser';
+import useValidUser from '@/hooks/useValidUser';
 
 function Protected({ children, access }) {
   const isValidUser = useValidUser();

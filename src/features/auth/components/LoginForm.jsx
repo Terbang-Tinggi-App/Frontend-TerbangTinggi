@@ -14,6 +14,7 @@ import GoogleLogin from './Googlelogin';
 
 export function LoginForm() {
   const userEmailLocalStorage = localStorage.getItem('userEmail');
+  const redirectAfterLogin = sessionStorage.getItem('redirectTo');
 
   const [rememberMe, setRememberMe] = useState(Boolean(userEmailLocalStorage));
 
@@ -46,16 +47,18 @@ export function LoginForm() {
   };
 
   useEffect(() => {
-    if (isValidUser) {
-      navigate('/');
+    if (isValidUser && redirectAfterLogin) {
+      sessionStorage.removeItem('redirectTo');
+      navigate(redirectAfterLogin);
     }
 
-    if (userInfo) {
+    if (userInfo && redirectAfterLogin) {
       toast('Logged in', {
         autoClose: 1000,
         type: 'success'
       });
-      navigate('/');
+      sessionStorage.removeItem('redirectTo');
+      navigate(redirectAfterLogin);
     }
   }, [userInfo]);
 
