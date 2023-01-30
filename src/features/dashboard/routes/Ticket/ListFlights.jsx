@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,7 +9,7 @@ import { IoWarningOutline } from 'react-icons/io5';
 import { BASE_API_URL } from '@/config';
 import { Dashboard } from '@/components/Layout';
 // eslint-disable-next-line import/extensions
-import { setTicketData, resetData, getAllTickets } from '@/redux/ticket/ticket.actions.js';
+import { getAllTickets } from '@/redux/ticket/ticket.actions.js';
 import TableSkeleton from '@/components/Layout/Skeleton';
 import CustomModal from '@/components/Modal/CustomModal';
 import Spinner from '@/components/Layout/Spinner';
@@ -23,7 +23,6 @@ export function ListFlights() {
   const [query, setQuery] = useState('');
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { data, error } = useSelector((state) => state.ticket.allTickets);
 
@@ -85,7 +84,6 @@ export function ListFlights() {
   };
 
   useEffect(() => {
-    dispatch(resetData());
     dispatch(getAllTickets(Number(page), Number(limit)));
     setRefetch(false);
   }, [refetch, page, limit]);
@@ -186,28 +184,11 @@ export function ListFlights() {
                         <td>{ticket.capacity}</td>
                         <td>Rp. {new Intl.NumberFormat('ID-id').format(ticket.price)}</td>
                         <td>
-                          <button
+                          <Link
                             className="btn btn-warning btn-xs mr-2"
-                            onClick={() => {
-                              dispatch(
-                                setTicketData({
-                                  code: ticket.code,
-                                  airlineName: ticket.airlineName,
-                                  departureAirport: ticket.departureAirport,
-                                  departure: ticket.departure,
-                                  arrivalAirport: ticket.arrivalAirport,
-                                  arrival: ticket.arrival,
-                                  date: ticket.date,
-                                  departureTime: ticket.departureTime,
-                                  arrivalTime: ticket.arrivalTime,
-                                  price: ticket.price
-                                })
-                              );
-                              navigate(`/dashboard/flights/${ticket.id}`);
-                            }}
-                            type="button">
+                            to={`/dashboard/flights/${ticket.id}`}>
                             Update
-                          </button>
+                          </Link>
                           <button
                             className="btn btn-error btn-xs"
                             onClick={() => {

@@ -1,42 +1,8 @@
 import axios from 'axios';
 
-import { _setTicketData, _resetData, _getAllTickets } from './ticket.slice';
+import { _getAllTickets } from './ticket.slice';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-export const setTicketData =
-  ({
-    code,
-    airlineName,
-    departureAirport,
-    departure,
-    arrivalAirport,
-    arrival,
-    date,
-    departureTime,
-    arrivalTime,
-    price
-  }) =>
-  (dispatch) => {
-    dispatch(
-      _setTicketData({
-        code,
-        airlineName,
-        departureAirport,
-        departure,
-        arrivalAirport,
-        arrival,
-        date,
-        departureTime,
-        arrivalTime,
-        price
-      })
-    );
-  };
-
-export const resetData = () => (dispatch) => {
-  dispatch(_resetData());
-};
 
 export const getAllTickets =
   (page = 1, limit = 10) =>

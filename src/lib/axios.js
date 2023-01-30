@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 
-import { API_URL } from '../config';
+import { BASE_API_URL } from '@/config';
 
 function authRequestInterceptor(config) {
   const token = localStorage.getItem('token');
@@ -13,7 +13,7 @@ function authRequestInterceptor(config) {
 }
 
 export const axios = Axios.create({
-  baseURL: API_URL
+  baseURL: BASE_API_URL
 });
 
 axios.interceptors.request.use(authRequestInterceptor);
