@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { login, loginGoogle, registerUser, whoami } from './auth.actions';
 
@@ -31,8 +31,8 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload.data;
-        state.userToken = payload.data.token;
+        state.userInfo = payload;
+        state.userToken = payload.token;
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.loading = false;
@@ -76,6 +76,12 @@ const authSlice = createSlice({
       });
   }
 });
+
+// Selector
+const selectAuth = (state) => state.auth;
+
+export const getUserToken = createSelector([selectAuth], (auth) => auth.userToken);
+export const getUserInfo = createSelector([selectAuth], (auth) => auth.userInfo);
 
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;

@@ -1,22 +1,17 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { BASE_API_URL } from '../../../config';
+import { axios } from '@/lib/axios';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
   async ({ email, password, confirmPassword, username }, { rejectWithValue }) => {
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      await axios.post(
-        `${BASE_API_URL}/auth/register`,
-        { email, password, confirmPassword, username },
-        config
-      );
+      await axios.post('/auth/register', {
+        email,
+        password,
+        confirmPassword,
+        username
+      });
       return null;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -31,13 +26,8 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      const { data } = await axios.post(`${BASE_API_URL}/auth/login`, { email, password }, config);
-      localStorage.setItem('token', data.data.token);
+      const { data } = await axios.post('/auth/login', { email, password });
+      localStorage.setItem('token', data.token);
       return data;
     } catch (error) {
       // return custom error message from API if any
@@ -52,26 +42,21 @@ export const login = createAsyncThunk(
 export const loginGoogle = createAsyncThunk(
   'auth/loginGoogle',
   async (accessToken) => {
-    const { data: tokenData, status } = await axios.post(`${BASE_API_URL}/auth/google`, {
+    const { token } = await axios.post('/auth/google', {
       access_token: accessToken
     });
 
-    if (status === 200 || status === 201) {
-      localStorage.setItem('token', tokenData.token);
-    }
+    localStorage.setItem('token', token);
 
-    const { data: verifiedData } = await axios.get(`${BASE_API_URL}/auth/me`, {
-      headers: {
-        Authorization: tokenData.token
-      }
-    });
+    const { data } = await axios.get('/auth/me');
+    const { id, username, email, role } = data ?? {};
 
     return {
-      token: tokenData.token,
-      id: verifiedData.data.id,
-      name: verifiedData.data.username,
-      email: verifiedData.data.email,
-      role: verifiedData.data.role
+      token,
+      id,
+      name: username,
+      email,
+      role
     };
   },
   (arg, error) => ({ payload: arg, error: error.response.data.message })
@@ -79,12 +64,8 @@ export const loginGoogle = createAsyncThunk(
 
 export const whoami = createAsyncThunk('auth/whoami', async (token, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(`${BASE_API_URL}/auth/me`, {
-      headers: {
-        Authorization: token
-      }
-    });
-    return data.data;
+    const { data } = await axios.get('/auth/me');
+    return data;
   } catch (error) {
     if (error.response && error.response.data.message) {
       return rejectWithValue(error.response.data.message);
