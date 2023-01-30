@@ -12,7 +12,7 @@ How to run this project locally
 2. Run `npm install or yarn` on terminal
 3. Create new branch for your local development, e.g: `dev/your_name`
 4. After branch created, checkout to your new branch using `git checkout name_of_your_branch`
-5. After installed, run `npm start or yarn start` on terminal
+5. After installed, run `npm run dev or yarn dev` on terminal
 6. Open `http://localhost:3000` in your browser
 
 ## Contributing
@@ -25,6 +25,4 @@ Contribution guide
 
 ## Live preview
 
-[Terbang Tinggi Production](https://terbangtinggi.km3ggwp.com)
-<br>
-[Terbang Tinggi Staging](https://terbangtinggi-staging.km3ggwp.com)
+[Terbang Tinggi App](https://terbang-tinggi-client.vercel.app)
