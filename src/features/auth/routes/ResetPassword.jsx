@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 
+import { BASE_API_URL } from '@/config';
 import { Button } from '@/components/Elements';
-import { ForgotResetLayout } from '../components/Layout';
-import { Logo } from '@/components/Icons';
 import { resetPasswordSchema } from '@/utils/schemas';
+import { Layout } from '../components/Layout';
 
 export function ResetPassword() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -29,14 +29,14 @@ export function ResetPassword() {
   const handleResetPassword = async (data) => {
     try {
       setIsSubmitting(true);
-      const response = await axios.patch(
-        `${process.env.REACT_APP_AUTH_API}/auth/reset-password?token=${token}`,
+      const { status } = await axios.patch(
+        `${BASE_API_URL}/auth/reset-password?token=${token}`,
         data
       );
-      if (response.status === 200) {
+      if (status === 200) {
         setIsSuccess(true);
         setTimeout(() => {
-          navigate('/login');
+          navigate('/auth/login');
         }, 3000);
         setIsSubmitting(false);
       } else {
@@ -61,24 +61,22 @@ export function ResetPassword() {
   }, []);
 
   return (
-    <ForgotResetLayout>
-      <Link className="font-bold text-2xl inline-flex items-center gap-2 mb-8" to="/">
-        <Logo size={36} />
-        Terbang Tinggi
-      </Link>
+    <Layout>
       {isSuccess ? (
-        <div>
+        <div className="flex flex-col items-center">
           <img
-            src="https://res.cloudinary.com/dmgrxm78p/image/upload/v1670025245/terbangtinggi/password_is_reset.gif"
+            src="https://res.cloudinary.com/dmgrxm78p/image/upload/v1675177778/terbangtinggi/undraw_Completing_re_i7ap_rwh8jc.png"
             alt="password is reset"
+            height={200}
+            width={240}
           />
           <p className="text-center my-4 text-2xl font-semibold">
             Password is changed. Redirecting to login page...
           </p>
         </div>
       ) : (
-        <div className="w-full p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md sm:p-8">
-          <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+        <div className="flex flex-col w-full h-96 p-6 bg-white rounded-lg shadow md:mt-0 sm:max-w-md sm:p-8">
+          <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
             Change Password
           </h2>
           <form
@@ -137,6 +135,6 @@ export function ResetPassword() {
           </form>
         </div>
       )}
-    </ForgotResetLayout>
+    </Layout>
   );
 }
