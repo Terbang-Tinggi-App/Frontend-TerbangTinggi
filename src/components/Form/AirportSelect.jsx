@@ -1,8 +1,7 @@
-import React from 'react';
 import AsyncSelect from 'react-select/async';
 
-import useAirportList from '../../hooks/useAirportList';
-import { defaultOptionsAirportData } from '../../utils/airports';
+import useAirportList from '@/hooks/useAirportList';
+import { defaultOptionsAirportData } from '@/utils/airports';
 
 export function AirportSelect({ value, onChange, placeholder, ...rest }) {
   const promiseOptions = useAirportList();

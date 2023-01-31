@@ -1,9 +1,8 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Logo } from '../Icons';
 
-function Footer({ variant }) {
+export function Footer({ variant }) {
   return (
     <footer
       className={`p-4 ${
@@ -38,5 +37,3 @@ function Footer({ variant }) {
     </footer>
   );
 }
-
-export default Footer;

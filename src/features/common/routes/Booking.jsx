@@ -1,17 +1,16 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable array-callback-return */
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BiUserCircle } from 'react-icons/bi';
 import { IoWarningOutline } from 'react-icons/io5';
+import axios from 'axios';
 
 import { BASE_API_URL } from '@/config';
-import { Button, FormControl, Label } from '@/components/Input';
+import { FormControl, Label } from '@/components/Form';
 import { Layout } from '@/components/Layout';
-import TextSkeleton from '@/components/Layout/TextSkeleton';
-import CustomModal from '@/components/Modal/CustomModal';
+import { Button, CustomModal, TextSkeleton } from '@/components/Elements';
 
 export function Booking() {
   const [data, setData] = useState([]);

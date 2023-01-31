@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-import { Dashboard } from '@/components/Layout';
+import { Layout } from '../../components/Layout';
 import {
   AirlineSelect,
   AirportSelect,
@@ -12,7 +12,7 @@ import {
   Label,
   SeatClassSelect,
   TripTypeSelect
-} from '@/components/Input';
+} from '@/components/Form';
 import { VStack } from '@/components/Container';
 import { today } from '@/utils/dates';
 
@@ -100,7 +100,7 @@ export function CreateFlight() {
   };
 
   return (
-    <Dashboard>
+    <Layout>
       <div className="p-8">
         <h1 className="text-3xl">Create Flight</h1>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -263,6 +263,6 @@ export function CreateFlight() {
           </div>
         </form>
       </div>
-    </Dashboard>
+    </Layout>
   );
 }

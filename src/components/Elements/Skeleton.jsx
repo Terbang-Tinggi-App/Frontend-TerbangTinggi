@@ -1,6 +1,4 @@
-import React from 'react';
-
-function TableSkeleton() {
+export function TableSkeleton() {
   return (
     <table className="table table-zebra w-full">
       <thead>
@@ -20,8 +18,6 @@ function TableSkeleton() {
     </table>
   );
 }
-
-export default TableSkeleton;
 
 export function SkeletonItem() {
   return (

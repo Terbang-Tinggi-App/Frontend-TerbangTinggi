@@ -1,11 +1,11 @@
 /* eslint-disable import/extensions */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdAirplane } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getTransactionsData } from '@/redux/transactions/transactions.actions';
-import Protected from '@/components/Routes/Protected';
+import { Protected } from '@/components/Routes';
 
 export function Transactions() {
   const [tabActive, setTabActive] = useState('paid');

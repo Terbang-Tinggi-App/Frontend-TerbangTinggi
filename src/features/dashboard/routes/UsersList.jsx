@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import ReactPaginate from 'react-paginate';
 
 import { axios } from '@/lib/axios';
-import Spinner from '@/components/Layout/Spinner';
-import { Dashboard } from '@/components/Layout';
+import { Spinner } from '@/components/Elements';
+import { Layout } from '../components/Layout';
 
 export function UsersList() {
   const [user, setUser] = useState(null);
@@ -42,7 +42,7 @@ export function UsersList() {
   };
 
   return (
-    <Dashboard>
+    <Layout>
       <div className="px-5 mt-10">
         {user ? (
           <>
@@ -116,6 +116,6 @@ export function UsersList() {
           <Spinner textContent="Getting list users" />
         )}
       </div>
-    </Dashboard>
+    </Layout>
   );
 }

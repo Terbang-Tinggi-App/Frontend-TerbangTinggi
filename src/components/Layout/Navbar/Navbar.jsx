@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -9,10 +9,10 @@ import { BASE_API_URL } from '@/config';
 import useValidUser from '@/hooks/useValidUser';
 import { logout } from '@/features/auth/redux/auth.slice';
 import { getTransactionsData } from '@/redux/transactions/transactions.actions';
-import { Logo } from '../Icons';
+import { Logo } from '../../Icons';
 import { AuthenticatedMenu } from './AuthenticatedMenu';
 
-function Navbar() {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -208,5 +208,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;

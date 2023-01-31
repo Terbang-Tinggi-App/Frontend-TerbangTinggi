@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 
-import { Button } from '@/components/Input';
+import { Button } from '@/components/Elements';
 import { ForgotResetLayout } from '../components/Layout';
 import { Logo } from '@/components/Icons';
 import { resetPasswordSchema } from '@/utils/schemas';

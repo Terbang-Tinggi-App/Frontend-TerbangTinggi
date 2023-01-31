@@ -1,6 +1,4 @@
-import React from 'react';
-
-import Footer from '@/components/Layout/Footer';
+import { Footer } from '@/components/Layout';
 
 export function ForgotResetLayout({ children }) {
   return (

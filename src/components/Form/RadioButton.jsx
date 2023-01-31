@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function RadioButton({ label, value, onChange, id, name, title }) {
   return (
     <div className="flex gap-2 items-center">

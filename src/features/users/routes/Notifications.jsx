@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { RxCross2 } from 'react-icons/rx';
+import axios from 'axios';
 
 import { BASE_API_URL } from '@/config';
-import Protected from '@/components/Routes/Protected';
-import Spinner from '@/components/Layout/Spinner';
+import { Protected } from '@/components/Routes';
+import { Spinner } from '@/components/Elements';
 
 export function Notifications() {
   const [notif, setNotif] = useState(null);

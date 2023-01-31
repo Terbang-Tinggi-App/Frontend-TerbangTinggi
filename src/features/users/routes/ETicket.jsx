@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { BiTimeFive } from 'react-icons/bi';
@@ -8,8 +8,8 @@ import axios from 'axios';
 
 import { BASE_API_URL } from '@/config';
 import { Logo } from '@/components/Icons';
-import TextSkeleton from '@/components/Layout/TextSkeleton';
-import Protected from '@/components/Routes/Protected';
+import { TextSkeleton } from '@/components/Elements';
+import { Protected } from '@/components/Routes';
 
 export function ETicket() {
   const [ticketData, setTicketData] = useState(null);

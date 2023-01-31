@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 import useValidUser from '@/hooks/useValidUser';
 
-function Protected({ children, access }) {
+export function Protected({ children, access }) {
   const isValidUser = useValidUser();
 
   const { userInfo } = useSelector((state) => state.auth);
@@ -21,5 +21,3 @@ function Protected({ children, access }) {
 
   return children;
 }
-
-export default Protected;

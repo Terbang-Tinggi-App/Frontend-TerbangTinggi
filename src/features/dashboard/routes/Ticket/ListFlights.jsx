@@ -1,19 +1,17 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { IoWarningOutline } from 'react-icons/io5';
+import axios from 'axios';
 
 import { BASE_API_URL } from '@/config';
-import { Dashboard } from '@/components/Layout';
 // eslint-disable-next-line import/extensions
 import { getAllTickets } from '@/redux/ticket/ticket.actions.js';
-import TableSkeleton from '@/components/Layout/Skeleton';
-import CustomModal from '@/components/Modal/CustomModal';
-import Spinner from '@/components/Layout/Spinner';
-import { FormControl, Label } from '@/components/Input';
+import { TableSkeleton, CustomModal, Spinner } from '@/components/Elements';
+import { FormControl, Label } from '@/components/Form';
+import { Layout } from '../../components/Layout';
 
 export function ListFlights() {
   const [refetch, setRefetch] = useState(false);
@@ -83,6 +81,17 @@ export function ListFlights() {
     setQuery(e.target.value);
   };
 
+  const handleHello = () => {
+    const currentSearchParams = new URLSearchParams(window.location.search);
+    const currentPage = currentSearchParams.get('page');
+    currentSearchParams.set('page', Number(currentPage) + 1);
+    window.history.pushState(
+      {},
+      '',
+      `${window.location.pathname}?${currentSearchParams.toString()}`
+    );
+  };
+
   useEffect(() => {
     dispatch(getAllTickets(Number(page), Number(limit)));
     setRefetch(false);
@@ -90,7 +99,7 @@ export function ListFlights() {
 
   if (error) {
     return (
-      <Dashboard>
+      <Layout>
         <section className="min-h-screen">
           <h1 className="text-2xl mb-4">List of all available flights</h1>
           <p>
@@ -100,12 +109,12 @@ export function ListFlights() {
             </Link>
           </p>
         </section>
-      </Dashboard>
+      </Layout>
     );
   }
 
   return (
-    <Dashboard>
+    <Layout>
       <section className="my-4 mx-2">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl mb-4 hidden md:block">List all Flights</h1>
@@ -208,6 +217,10 @@ export function ListFlights() {
               )}
             </div>
 
+            <button className="btn btn-success" onClick={() => handleHello(5)} type="button">
+              Hello
+            </button>
+
             <div className="flex justify-center my-4">
               <div className="btn-group">
                 <button
@@ -295,6 +308,76 @@ export function ListFlights() {
           </div>
         </div>
       </CustomModal>
-    </Dashboard>
+    </Layout>
+  );
+}
+
+// Create reusable pagination
+export function Pagination({ page, totalPages }) {
+  const handleDecrementPage = () => {
+    //
+  };
+
+  const handleIncrementPage = () => {
+    //
+  };
+
+  const handleAmountPage = (amount) => {
+    //
+    // eslint-disable-next-line no-console
+    console.log(amount);
+  };
+  return (
+    <div className="btn-group">
+      <button
+        type="button"
+        className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
+        disabled={page <= 1}
+        onClick={handleDecrementPage}>
+        Prev
+      </button>
+      <button
+        type="button"
+        className={`btn ${!Number(page <= 1) || !Number(page - 1) <= 1 ? 'hidden' : 'block'}`}
+        disabled={page <= 1}
+        onClick={handleDecrementPage}>
+        1l
+      </button>
+      <button
+        type="button"
+        className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
+        disabled={page <= 1}
+        onClick={handleDecrementPage}>
+        {page - 1}
+      </button>
+      <button type="button" className="btn btn-active">
+        {page}
+      </button>
+      <button
+        type="button"
+        className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
+        disabled={page >= totalPages}
+        onClick={handleIncrementPage}>
+        {Number(page) + 1}
+      </button>
+      <button
+        type="button"
+        className={`btn ${
+          Number(page) === Number(totalPages) || Number(totalPages - 1) === Number(page)
+            ? 'hidden'
+            : 'block'
+        }`}
+        disabled={page >= totalPages}
+        onClick={() => handleAmountPage(Number(totalPages))}>
+        {totalPages}
+      </button>
+      <button
+        type="button"
+        className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
+        disabled={page >= totalPages}
+        onClick={handleIncrementPage}>
+        Next
+      </button>
+    </div>
   );
 }

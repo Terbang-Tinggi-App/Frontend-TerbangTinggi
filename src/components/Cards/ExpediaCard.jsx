@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 export function ExpediaCard({
@@ -20,8 +19,7 @@ export function ExpediaCard({
     <Link
       to={`/booking/${id}?${query}`}
       // set current ticket to localStorage or Redux store for booking information
-      className="flex flex-col justify-center w-full bg-brand-lighter-100 p-4 rounded-lg cursor-pointer"
-    >
+      className="flex flex-col justify-center w-full bg-brand-lighter-100 p-4 rounded-lg cursor-pointer">
       <div className="flex justify-between items-start gap-4 md:gap-16">
         {/* left content, e.g time, destination, airline name */}
         <div className="text-start flex flex-col gap-2 mb-3">

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import useValidUser from '@/hooks/useValidUser';
-import { Button } from '@/components/Input';
+import { Button } from '@/components/Elements';
 import { Logo } from '@/components/Icons';
-import { ForgotResetLayout } from '../components/Layout';
 import { EMAIL } from '@/utils/regex';
+import { ForgotResetLayout } from '../components/Layout';
 
 export function ForgotPassword() {
   const [email, setEmail] = useState('');

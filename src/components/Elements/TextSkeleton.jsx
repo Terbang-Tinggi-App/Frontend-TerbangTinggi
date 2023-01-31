@@ -1,6 +1,4 @@
-import React from 'react';
-
-function TextSkeleton({ className }) {
+export function TextSkeleton({ className }) {
   return (
     <div role="status" className="max-w-sm animate-pulse">
       <div className={`h-2.5 bg-gray-200 rounded-full w-48 mb-4 ${className}`} />
@@ -8,5 +6,3 @@ function TextSkeleton({ className }) {
     </div>
   );
 }
-
-export default TextSkeleton;

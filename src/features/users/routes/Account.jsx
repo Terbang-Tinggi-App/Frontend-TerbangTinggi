@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlinePhone, AiOutlineUser, AiOutlineMail, AiOutlineGlobal } from 'react-icons/ai';
 import { FaCity } from 'react-icons/fa';
 import { BsFillPinMapFill } from 'react-icons/bs';
@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { BASE_API_URL } from '@/config';
-import Spinner from '@/components/Layout/Spinner';
-import Protected from '@/components/Routes/Protected';
+import { Spinner } from '@/components/Elements';
+import { Protected } from '@/components/Routes';
 
 export function Account() {
   const [formData, setFormData] = useState(null);

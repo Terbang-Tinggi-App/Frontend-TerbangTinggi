@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
-import Navbar from '../Navbar/Navbar';
-import Footer from './Footer';
+import { Navbar } from './Navbar';
+import { Footer } from './Footer';
 
 export function Layout({ children, title, className, footer }) {
   useEffect(() => {

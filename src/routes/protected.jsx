@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { Layout } from '@/components/Layout';
-import Spinner from '@/components/Layout/Spinner';
+import { Spinner } from '@/components/Elements';
 import { UsersRoutes } from '@/features/users';
 import { DashboardRoutes } from '@/features/dashboard';
 import { PaymentRoutes } from '@/features/payment';

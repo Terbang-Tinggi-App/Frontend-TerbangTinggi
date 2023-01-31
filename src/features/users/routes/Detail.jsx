@@ -12,7 +12,7 @@ import { BsFillPinMapFill, BsTelephonePlusFill } from 'react-icons/bs';
 
 import { BASE_API_URL } from '@/config';
 import Protected from '@/components/Routes/Protected';
-import Spinner from '@/components/Layout/Spinner';
+import Spinner from '@/components/Elements/Spinner';
 
 export function Detail() {
   const [detail, setDetail] = useState(null);

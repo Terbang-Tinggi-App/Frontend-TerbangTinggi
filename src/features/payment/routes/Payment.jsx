@@ -1,18 +1,15 @@
 /* eslint-disable no-unsafe-optional-chaining */
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { MdPayment } from 'react-icons/md';
+import axios from 'axios';
 
 import { BASE_API_URL } from '@/config';
 import useValidUser from '@/hooks/useValidUser';
 import { Layout } from '@/components/Layout';
-import { Button } from '@/components/Input';
-import CustomModal from '@/components/Modal/CustomModal';
-import Protected from '@/components/Routes/Protected';
-import TextSkeleton from '@/components/Layout/TextSkeleton';
-import ImageSkeleton from '@/components/Layout/ImageSkeleton';
+import { Button, CustomModal, ImageSkeleton, TextSkeleton } from '@/components/Elements';
+import { Protected } from '@/components/Routes';
 
 export function Payment() {
   const [ticketData, setTicketData] = useState(null);

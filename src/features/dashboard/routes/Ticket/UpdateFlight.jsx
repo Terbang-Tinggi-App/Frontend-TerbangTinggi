@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 import { BASE_API_URL } from '@/config';
-import { Dashboard } from '@/components/Layout';
-import { AirlineSelect, FormControl, Input, Label, SeatClassSelect } from '@/components/Input';
+import { AirlineSelect, FormControl, Input, Label, SeatClassSelect } from '@/components/Form';
 import { VStack } from '@/components/Container';
-import Spinner from '@/components/Layout/Spinner';
+import { Spinner } from '@/components/Elements';
+import { Layout } from '../../components/Layout';
 
 export function UpdateFlight() {
   const [data, setData] = useState(null);
@@ -80,7 +80,7 @@ export function UpdateFlight() {
   }, []);
 
   return (
-    <Dashboard>
+    <Layout>
       <div className="p-4 md:p-8">
         <h1 className="text-3xl">Update Flight</h1>
         {data ? (
@@ -252,6 +252,6 @@ export function UpdateFlight() {
           <Spinner textContent="Getting flight detail" />
         )}
       </div>
-    </Dashboard>
+    </Layout>
   );
 }

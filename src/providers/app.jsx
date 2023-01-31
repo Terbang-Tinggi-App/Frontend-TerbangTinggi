@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { GOOGLE_CLIENT_ID } from '../config';
-import Spinner from '../components/Layout/Spinner';
+import { GOOGLE_CLIENT_ID } from '@/config';
+import { Spinner } from '@/components/Elements';
 
 function ErrorFallback() {
   return (

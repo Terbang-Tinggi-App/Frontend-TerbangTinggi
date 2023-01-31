@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -8,7 +8,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import useValidUser from '@/hooks/useValidUser';
 import { registerUser } from '../redux/auth.actions';
 import { registerSchema } from '@/utils/schemas';
-import { Input, Label, FormControl, ErrorCard } from '@/components/Input';
+import { Input, Label, FormControl } from '@/components/Form';
+import { ErrorCard } from '@/components/Cards';
 
 export function RegisterForm() {
   const { loading, error, success } = useSelector((state) => state.auth);

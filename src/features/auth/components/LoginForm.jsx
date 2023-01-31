@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -7,9 +7,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import useValidUser from '@/hooks/useValidUser';
-import { login } from '../redux/auth.actions';
 import { loginSchema } from '@/utils/schemas';
-import { FormControl, Input, Label, ErrorCard } from '@/components/Input';
+import { FormControl, Input, Label } from '@/components/Form';
+import { ErrorCard } from '@/components/Cards';
+import { login } from '../redux/auth.actions';
 import GoogleLogin from './Googlelogin';
 
 export function LoginForm() {

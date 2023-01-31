@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  *
  * @param {React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>} props
@@ -12,8 +10,7 @@ export function TripTypeSelect(props) {
     <select
       className={`select select-primary w-full max-w-xs ${className}`}
       name="tripType"
-      {...rest}
-    >
+      {...rest}>
       <option value="one_way">One way</option>
       <option value="round_trip">Round trip</option>
     </select>

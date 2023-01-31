@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { TbLogout, TbUser, TbHistory } from 'react-icons/tb';
 import { IoWarningOutline } from 'react-icons/io5';
 import { RxDashboard } from 'react-icons/rx';
 
-import CustomModal from '../Modal/CustomModal';
+import { CustomModal } from '@/components/Elements';
 
 export function AuthenticatedMenu({
   handleLogout,

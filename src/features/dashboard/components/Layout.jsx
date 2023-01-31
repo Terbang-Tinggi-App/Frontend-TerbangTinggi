@@ -1,24 +1,22 @@
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TbList, TbPlaylistAdd, TbUsers, TbLogout, TbHome } from 'react-icons/tb';
 import { IoWarningOutline } from 'react-icons/io5';
 
-import useValidUser from '@/hooks/useValidUser';
-import Protected from '../Routes/Protected';
-import { Logo } from '../Icons';
-import CustomModal from '../Modal/CustomModal';
+import { Protected } from '@/components/Routes';
+import { Logo } from '@/components/Icons';
+import { CustomModal } from '@/components/Elements';
 import { logout } from '@/features/auth/redux/auth.slice';
 
-export function Dashboard({ children }) {
+export function Layout({ children }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const { userInfo } = useSelector((state) => state.auth);
   const { username: name } = userInfo ?? {};
 
-  const isValidUser = useValidUser();
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -81,17 +79,13 @@ export function Dashboard({ children }) {
                 </li>
               </ul>
             </div>
-            {isValidUser ? (
-              <AuthRightElementNavbar
-                handleLogout={handleLogout}
-                username={name}
-                openModal={openModal}
-                closeModal={closeModal}
-                isOpen={modalOpen}
-              />
-            ) : (
-              ''
-            )}
+            <AuthRightElementNavbar
+              handleLogout={handleLogout}
+              username={name}
+              openModal={openModal}
+              closeModal={closeModal}
+              isOpen={modalOpen}
+            />
           </div>
           <main className="mx-4 md:mx-8">{children}</main>
         </div>

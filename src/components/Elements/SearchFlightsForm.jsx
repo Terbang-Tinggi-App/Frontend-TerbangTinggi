@@ -1,16 +1,17 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoMdSwap } from 'react-icons/io';
 
-import SEAT_CLASS from '../../utils/seatClass';
-import { defaultAirportSelected } from '../../utils/airports';
-import { dayAfterTomorrow, today, tomorrow, isLessThanToday } from '../../utils/dates';
+import SEAT_CLASS from '@/utils/seatClass';
+import { defaultAirportSelected } from '@/utils/airports';
+import { dayAfterTomorrow, today, tomorrow, isLessThanToday } from '@/utils/dates';
+import useHistorySearch from '@/hooks/useHistorySearch';
 import { SeatIcon, SearchIcon } from '../Icons';
-import { RadioButton, AirportSelect, Button, InputDate } from '.';
-import useHistorySearch from '../../hooks/useHistorySearch';
+import { RadioButton, AirportSelect, InputDate } from '../Form';
+import { Button } from './Button';
 
-function SearchFlightsForm({ setRefresh, setIsOpen }) {
+export function SearchFlightsForm({ setRefresh, setIsOpen }) {
   const {
     adult: historyTotalPassengers,
     arrival: historyArrival,
@@ -120,8 +121,7 @@ function SearchFlightsForm({ setRefresh, setIsOpen }) {
           <Button
             onClick={handleSwapDestination}
             title="Swap Airports"
-            className="text-brand hover:bg-brand-darker-800 btn-sm btn-outline flex items-center gap-2 font-semibold w-full md:w-auto outline-brand border-brand bg-transparent"
-          >
+            className="text-brand hover:bg-brand-darker-800 btn-sm btn-outline flex items-center gap-2 font-semibold w-full md:w-auto outline-brand border-brand bg-transparent">
             <IoMdSwap size={24} />
             <p>Swap Airports</p>
           </Button>
@@ -156,14 +156,12 @@ function SearchFlightsForm({ setRefresh, setIsOpen }) {
           <div className="dropdown md:w-[200px] w-full cursor-pointer">
             <p
               tabIndex={0}
-              className="input input-primary flex items-center border-[#cccccc] border text-gray-900 md:w-[200px] w-full rounded-[4px] select-none"
-            >
+              className="input input-primary flex items-center border-[#cccccc] border text-gray-900 md:w-[200px] w-full rounded-[4px] select-none">
               {adult ?? 1} Passengers
             </p>
             <div
               tabIndex={0}
-              className="dropdown-content card card-compact w-64 bg-white text-black mt-1 rounded-[4px] shadow-md shadow-indigo-200"
-            >
+              className="dropdown-content card card-compact w-64 bg-white text-black mt-1 rounded-[4px] shadow-md shadow-indigo-200">
               <div className="card-body">
                 <div className="flex items-center justify-between">
                   <div>Passengers</div>
@@ -171,16 +169,14 @@ function SearchFlightsForm({ setRefresh, setIsOpen }) {
                     <button
                       className="btn btn-outline btn-sm"
                       onClick={decrementAdultPassenger}
-                      type="button"
-                    >
+                      type="button">
                       -
                     </button>
                     {adult}
                     <button
                       className="btn btn-outline btn-sm"
                       onClick={incrementAdultPassenger}
-                      type="button"
-                    >
+                      type="button">
                       +
                     </button>
                   </div>
@@ -206,8 +202,7 @@ function SearchFlightsForm({ setRefresh, setIsOpen }) {
         <div
           className={`flex flex-col md:w-[250px] w-full ${
             tripType === 'one_way' ? 'hidden sm:block' : 'visible'
-          }`}
-        >
+          }`}>
           <label className="font-semibold">Return Date</label>
           <InputDate
             value={returnDate}
@@ -230,8 +225,7 @@ function SearchFlightsForm({ setRefresh, setIsOpen }) {
               className="input input-primary rounded-[4px] border-[#cccccc] border text-gray-900 text-sm block w-full pl-10 p-2.5 appearance-none cursor-pointer"
               value={seatClass}
               onChange={(e) => setSeatClass(e.target.value)}
-              title="Seat class"
-            >
+              title="Seat class">
               {SEAT_CLASS.map((item) => (
                 <option value={item.value} key={item.value}>
                   {item.label}
@@ -245,8 +239,7 @@ function SearchFlightsForm({ setRefresh, setIsOpen }) {
         <Button
           className="sm:w-auto w-full"
           onClick={handleSearchFlight}
-          disabled={!departure || !arrival || isSameAirpot || !startDate || !returnDate}
-        >
+          disabled={!departure || !arrival || isSameAirpot || !startDate || !returnDate}>
           <SearchIcon />
           Search Flights
         </Button>
@@ -254,5 +247,3 @@ function SearchFlightsForm({ setRefresh, setIsOpen }) {
     </form>
   );
 }
-
-export default SearchFlightsForm;
