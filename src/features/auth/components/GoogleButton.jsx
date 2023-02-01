@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import { loginGoogle } from '../redux/auth.actions';
 
-export function GoogleLogin({ type }) {
+export function GoogleButton({ type }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

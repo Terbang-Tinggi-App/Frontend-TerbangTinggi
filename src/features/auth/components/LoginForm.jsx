@@ -11,7 +11,7 @@ import { loginSchema } from '@/utils/schemas';
 import { FormControl, Input, Label } from '@/components/Form';
 import { ErrorCard } from '@/components/Cards';
 import { login } from '../redux/auth.actions';
-import { GoogleLogin } from './GoogleLogin';
+import { GoogleButton } from './GoogleButton';
 
 export function LoginForm() {
   const userEmailLocalStorage = localStorage.getItem('userEmail');
@@ -70,7 +70,7 @@ export function LoginForm() {
       <p className="mt-3 mb-[26px]">Hi, Welcome back 👋</p>
 
       <ErrorCard error={error} />
-      <GoogleLogin />
+      <GoogleButton />
 
       <div className="my-3 text-center">
         <p>or Login with Email</p>
