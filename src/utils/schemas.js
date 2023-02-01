@@ -37,3 +37,7 @@ export const resetPasswordSchema = yup.object({
     .required('Confirm password is required')
     .oneOf([yup.ref('newPassword'), null], "Password doesn't match")
 });
+
+export const forgotPasswordSchema = yup.object({
+  email: yup.string().email().required('Email is required').nullable()
+});

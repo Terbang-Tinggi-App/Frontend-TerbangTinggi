@@ -7,7 +7,7 @@ export function Button(props) {
 
   return (
     <button
-      className={`w-full font-semibold btn  ${
+      className={`w-full max-w-sm font-semibold btn  ${
         variant ? '' : 'bg-brand hover:bg-brand-darker-800'
       } ${className}`}
       type="button"

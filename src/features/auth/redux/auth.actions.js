@@ -73,3 +73,33 @@ export const whoami = createAsyncThunk('auth/whoami', async (token, { rejectWith
     return rejectWithValue(error.message);
   }
 });
+
+export const forgotPassword = createAsyncThunk(
+  'auth/forgotPassword',
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('/auth/forgot-password', email);
+      return response;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      }
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ data, token }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(`/auth/reset-password?token=${token}`, data);
+      return response;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      }
+      return rejectWithValue(error.message);
+    }
+  }
+);

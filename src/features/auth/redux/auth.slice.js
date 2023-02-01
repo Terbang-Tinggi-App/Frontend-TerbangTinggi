@@ -1,6 +1,13 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
-import { login, loginGoogle, registerUser, whoami } from './auth.actions';
+import {
+  login,
+  loginGoogle,
+  registerUser,
+  whoami,
+  forgotPassword,
+  resetPassword
+} from './auth.actions';
 
 const initialState = {
   loading: false,
@@ -72,6 +79,36 @@ const authSlice = createSlice({
       })
       .addCase(whoami.rejected, (state, { payload }) => {
         state.loading = false;
+        state.error = payload;
+      })
+      .addCase(forgotPassword.pending, (state) => {
+        state.error = false;
+        state.success = false;
+        state.loading = true;
+      })
+      .addCase(forgotPassword.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = false;
+        state.success = payload.success;
+      })
+      .addCase(forgotPassword.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.success = false;
+        state.error = payload;
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.error = false;
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(resetPassword.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = false;
+        state.success = payload.status;
+      })
+      .addCase(resetPassword.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.success = false;
         state.error = payload;
       });
   }

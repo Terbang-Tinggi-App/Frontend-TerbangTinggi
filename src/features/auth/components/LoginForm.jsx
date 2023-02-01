@@ -11,7 +11,7 @@ import { loginSchema } from '@/utils/schemas';
 import { FormControl, Input, Label } from '@/components/Form';
 import { ErrorCard } from '@/components/Cards';
 import { login } from '../redux/auth.actions';
-import { GoogleLogin } from './Googlelogin';
+import { GoogleLogin } from './GoogleLogin';
 
 export function LoginForm() {
   const userEmailLocalStorage = localStorage.getItem('userEmail');
