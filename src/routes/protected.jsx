@@ -1,19 +1,14 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { lazyImport } from '@/utils/lazyImport';
 import { Layout } from '@/components/Layout';
 import { Spinner } from '@/components/Elements';
 
-const UsersRoutes = lazy(() =>
-  import('@/features/users').then((module) => ({ default: module.UsersRoutes }))
-);
-const DashboardRoutes = lazy(() =>
-  import('@/features/dashboard').then((module) => ({ default: module.DashboardRoutes }))
-);
-const PaymentRoutes = lazy(() =>
-  import('@/features/payment').then((module) => ({ default: module.PaymentRoutes }))
-);
-const Home = lazy(() => import('@/features/common').then((module) => ({ default: module.Home })));
+const { UsersRoutes } = lazyImport(() => import('@/features/users'), 'UsersRoutes');
+const { DashboardRoutes } = lazyImport(() => import('@/features/dashboard'), 'DashboardRoutes');
+const { PaymentRoutes } = lazyImport(() => import('@/features/payment'), 'PaymentRoutes');
+const { Home } = lazyImport(() => import('@/features/common'), 'Home');
 
 function App() {
   return (
