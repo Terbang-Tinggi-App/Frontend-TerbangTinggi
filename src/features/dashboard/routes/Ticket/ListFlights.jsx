@@ -1,33 +1,22 @@
-/* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { IoWarningOutline } from 'react-icons/io5';
-import axios from 'axios';
 
-import { BASE_API_URL } from '@/config';
-// eslint-disable-next-line import/extensions
-import { getAllTickets } from '@/redux/ticket/ticket.actions.js';
-import { TableSkeleton, CustomModal, Spinner } from '@/components/Elements';
+import { CustomModal, Spinner } from '@/components/Elements';
 import { FormControl, Label } from '@/components/Form';
+import { getAllTickets, deleteFlight } from '../../redux/ticket.actions';
+import { getAllTicketsState } from '../../redux/ticket.slice';
 import { Layout } from '../../components/Layout';
 
 export function ListFlights() {
-  const [refetch, setRefetch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentTicket, setCurrentTicket] = useState({});
   const [limit, setLimit] = useState('10');
-  const [query, setQuery] = useState('');
 
   const dispatch = useDispatch();
 
-  const { data, error } = useSelector((state) => state.ticket.allTickets);
-
-  const filterData = (q = '') =>
-    data
-      ? data?.rows?.filter((x) => Object.values(x).join().toLowerCase().includes(q.toLowerCase()))
-      : {};
+  const { error, data, loading } = useSelector(getAllTicketsState);
 
   const [searchParams, setSearchParams] = useSearchParams({
     page: 1
@@ -55,17 +44,7 @@ export function ListFlights() {
   };
 
   const handleDeleteTicket = async (id) => {
-    try {
-      const { status } = await axios.delete(`${BASE_API_URL}/flight/data/${id}`, {
-        headers: { Authorization: localStorage.getItem('token') }
-      });
-      if (status === 200 || status === 201) {
-        toast('Ticket is deleted', { type: 'success' });
-      }
-      setRefetch(true);
-    } catch (err) {
-      toast(err.message, { type: 'error' });
-    }
+    dispatch(deleteFlight(id));
   };
 
   const openModal = () => {
@@ -75,10 +54,6 @@ export function ListFlights() {
   const closeModal = () => {
     setIsOpen(false);
     setCurrentTicket({});
-  };
-
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
   };
 
   const handleHello = () => {
@@ -93,9 +68,8 @@ export function ListFlights() {
   };
 
   useEffect(() => {
-    dispatch(getAllTickets(Number(page), Number(limit)));
-    setRefetch(false);
-  }, [refetch, page, limit]);
+    dispatch(getAllTickets({ page: Number(page), limit: Number(limit) }));
+  }, [page, limit]);
 
   if (error) {
     return (
@@ -113,6 +87,10 @@ export function ListFlights() {
     );
   }
 
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <Layout>
       <section className="my-4 mx-2">
@@ -121,13 +99,6 @@ export function ListFlights() {
           <div className="form-control">
             <FormControl>
               <Label> </Label>
-              <input
-                type="text"
-                placeholder="Search…"
-                className="input input-bordered input-sm md:input-md"
-                value={query}
-                onChange={handleSearch}
-              />
             </FormControl>
           </div>
           <FormControl className="my-2">
@@ -149,137 +120,123 @@ export function ListFlights() {
             </select>
           </FormControl>
         </div>
-        {data ? (
-          <>
-            <div className="overflow-x-auto">
-              {data?.rows?.length > 0 ? (
-                <table className="table table-zebra w-full">
-                  <thead>
-                    <tr className="cursor-pointer">
-                      <th title="Flight Code">FC</th>
-                      <th>Airline</th>
-                      <th title="Departure Airport">DA</th>
-                      <th title="Departure Airport IATA Code">DAI</th>
-                      <th title="Arrival Airport">AA</th>
-                      <th title="Arrival Airport IATA Code">AAI</th>
-                      <th title="Seat Class">SC</th>
-                      <th title="Trip Type">TT</th>
-                      <th>Date</th>
-                      <th>Return Date</th>
-                      <th>Departure Time</th>
-                      <th>Arrival Time</th>
-                      <th>Capacity</th>
-                      <th>Price</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filterData(query)?.map((ticket, index) => (
-                      <tr key={index} className="py-2">
-                        <td className="uppercase">{ticket.code}</td>
-                        <td className="capitalize">{ticket.airlineName}</td>
-                        <td>{ticket.departureAirport}</td>
-                        <td>{ticket.departure}</td>
-                        <td>{ticket.arrivalAirport}</td>
-                        <td>{ticket.arrival}</td>
-                        <td className="capitalize">{ticket.sc}</td>
-                        <td className="capitalize">{ticket.tripType.split('_').join(' ')}</td>
-                        <td>{new Date(ticket.date).toDateString()}</td>
-                        <td className="text-center">
-                          {ticket.returnDate ? new Date(ticket.returnDate).toDateString() : '-'}
-                        </td>
-                        <td>{ticket.departureTime}</td>
-                        <td>{ticket.arrivalTime}</td>
-                        <td>{ticket.capacity}</td>
-                        <td>Rp. {new Intl.NumberFormat('ID-id').format(ticket.price)}</td>
-                        <td>
-                          <Link
-                            className="btn btn-warning btn-xs mr-2"
-                            to={`/dashboard/flights/${ticket.id}`}>
-                            Update
-                          </Link>
-                          <button
-                            className="btn btn-error btn-xs"
-                            onClick={() => {
-                              openModal();
-                              setCurrentTicket(ticket);
-                            }}
-                            type="button">
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <TableSkeleton />
-              )}
-            </div>
-
-            <button className="btn btn-success" onClick={() => handleHello(5)} type="button">
-              Hello
+        <div className="overflow-x-auto">
+          <table className="table table-zebra w-full">
+            <thead>
+              <tr className="cursor-pointer">
+                <th title="Flight Code">FC</th>
+                <th>Airline</th>
+                <th title="Departure Airport">DA</th>
+                <th title="Departure Airport IATA Code">DAI</th>
+                <th title="Arrival Airport">AA</th>
+                <th title="Arrival Airport IATA Code">AAI</th>
+                <th title="Seat Class">SC</th>
+                <th title="Trip Type">TT</th>
+                <th>Date</th>
+                <th>Return Date</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Capacity</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.rows?.map((ticket) => (
+                <tr key={ticket.id} className="py-2">
+                  <td className="uppercase">{ticket.code}</td>
+                  <td className="capitalize">{ticket.airlineName}</td>
+                  <td>{ticket.departureAirport}</td>
+                  <td>{ticket.departure}</td>
+                  <td>{ticket.arrivalAirport}</td>
+                  <td>{ticket.arrival}</td>
+                  <td className="capitalize">{ticket.sc}</td>
+                  <td className="capitalize">{ticket.tripType.split('_').join(' ')}</td>
+                  <td>{new Date(ticket.date).toDateString()}</td>
+                  <td className="text-center">
+                    {ticket.returnDate ? new Date(ticket.returnDate).toDateString() : '-'}
+                  </td>
+                  <td>{ticket.departureTime}</td>
+                  <td>{ticket.arrivalTime}</td>
+                  <td>{ticket.capacity}</td>
+                  <td>Rp. {new Intl.NumberFormat('ID-id').format(ticket.price)}</td>
+                  <td>
+                    <Link
+                      className="btn btn-warning btn-xs mr-2"
+                      to={`/dashboard/flights/${ticket.id}`}>
+                      Update
+                    </Link>
+                    <button
+                      className="btn btn-error btn-xs"
+                      onClick={() => {
+                        openModal();
+                        setCurrentTicket(ticket);
+                      }}
+                      type="button">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <button className="btn btn-success" onClick={() => handleHello(5)} type="button">
+          Hello
+        </button>
+        <div className="flex justify-center my-4">
+          <div className="btn-group">
+            <button
+              type="button"
+              className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
+              disabled={page <= 1}
+              onClick={handleDecrementPage}>
+              Prev
             </button>
-
-            <div className="flex justify-center my-4">
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
-                  disabled={page <= 1}
-                  onClick={handleDecrementPage}>
-                  Prev
-                </button>
-                <button
-                  type="button"
-                  className={`btn ${
-                    !Number(page <= 1) || !Number(page - 1) <= 1 ? 'hidden' : 'block'
-                  }`}
-                  disabled={page <= 1}
-                  onClick={handleDecrementPage}>
-                  1l
-                </button>
-                <button
-                  type="button"
-                  className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
-                  disabled={page <= 1}
-                  onClick={handleDecrementPage}>
-                  {page - 1}
-                </button>
-                <button type="button" className="btn btn-active">
-                  {page}
-                </button>
-                <button
-                  type="button"
-                  className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
-                  disabled={page >= totalPages}
-                  onClick={handleIncrementPage}>
-                  {Number(page) + 1}
-                </button>
-                <button
-                  type="button"
-                  className={`btn ${
-                    Number(page) === Number(totalPages) || Number(totalPages - 1) === Number(page)
-                      ? 'hidden'
-                      : 'block'
-                  }`}
-                  disabled={page >= totalPages}
-                  onClick={() => handleAmountPage(Number(totalPages))}>
-                  {totalPages}
-                </button>
-                <button
-                  type="button"
-                  className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
-                  disabled={page >= totalPages}
-                  onClick={handleIncrementPage}>
-                  Next
-                </button>
-              </div>
-            </div>
-          </>
-        ) : (
-          <Spinner textContent="Getting flights list" />
-        )}
+            <button
+              type="button"
+              className={`btn ${!Number(page <= 1) || !Number(page - 1) <= 1 ? 'hidden' : 'block'}`}
+              disabled={page <= 1}
+              onClick={handleDecrementPage}>
+              1l
+            </button>
+            <button
+              type="button"
+              className={`btn ${page <= 1 ? 'hidden' : 'block'}`}
+              disabled={page <= 1}
+              onClick={handleDecrementPage}>
+              {page - 1}
+            </button>
+            <button type="button" className="btn btn-active">
+              {page}
+            </button>
+            <button
+              type="button"
+              className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
+              disabled={page >= totalPages}
+              onClick={handleIncrementPage}>
+              {Number(page) + 1}
+            </button>
+            <button
+              type="button"
+              className={`btn ${
+                Number(page) === Number(totalPages) || Number(totalPages - 1) === Number(page)
+                  ? 'hidden'
+                  : 'block'
+              }`}
+              disabled={page >= totalPages}
+              onClick={() => handleAmountPage(Number(totalPages))}>
+              {totalPages}
+            </button>
+            <button
+              type="button"
+              className={`btn ${Number(page) === Number(totalPages) ? 'hidden' : 'block'}`}
+              disabled={page >= totalPages}
+              onClick={handleIncrementPage}>
+              Next
+            </button>
+          </div>
+        </div>
       </section>
 
       <CustomModal isOpen={isOpen} closeModal={closeModal} label="Delete flight">
@@ -381,3 +338,9 @@ export function Pagination({ page, totalPages }) {
     </div>
   );
 }
+
+// Join all object values into string
+// const filterData = (q = '') =>
+//   data
+//     ? data?.rows?.filter((x) => Object.values(x).join().toLowerCase().includes(q.toLowerCase()))
+//     : {};
