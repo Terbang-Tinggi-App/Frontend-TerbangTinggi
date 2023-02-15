@@ -5,7 +5,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '@/config';
 import { Layout } from '@/components/Layout';
 import { ExpediaCard } from '@/components/Cards';
-import { CustomModal, SearchFlightsForm, Spinner } from '@/components/Elements';
+import { Modal, SearchFlightsForm, Spinner } from '@/components/Elements';
 import { getSortedTicket } from '@/utils/tickets';
 
 export function SearchResult() {
@@ -79,7 +79,7 @@ export function SearchResult() {
           <button className="btn btn-primary bg-brand" onClick={openModal} type="button">
             Change Date
           </button>
-          <CustomModal
+          <Modal
             isOpen={isOpen}
             closeModal={closeModal}
             label="Change search destination"
@@ -90,7 +90,7 @@ export function SearchResult() {
                 Cancel
               </button>
             </div>
-          </CustomModal>
+          </Modal>
         </section>
       </Layout>
     );
@@ -114,7 +114,7 @@ export function SearchResult() {
           <button className="btn btn-primary bg-brand" onClick={openModal} type="button">
             Change search
           </button>
-          <CustomModal
+          <Modal
             isOpen={isOpen}
             closeModal={closeModal}
             label="Change search destination"
@@ -125,7 +125,7 @@ export function SearchResult() {
                 Cancel
               </button>
             </div>
-          </CustomModal>
+          </Modal>
         </section>
       </Layout>
     );
@@ -194,7 +194,7 @@ export function SearchResult() {
           </div>
         </div>
       </div>
-      <CustomModal
+      <Modal
         isOpen={isOpen}
         closeModal={closeModal}
         label="Change search destination"
@@ -205,7 +205,7 @@ export function SearchResult() {
             Cancel
           </button>
         </div>
-      </CustomModal>
+      </Modal>
     </Layout>
   );
 }

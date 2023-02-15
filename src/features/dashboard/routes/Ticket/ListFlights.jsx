@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoWarningOutline } from 'react-icons/io5';
 
-import { CustomModal, Spinner } from '@/components/Elements';
+import { Modal, Spinner } from '@/components/Elements';
 import { FormControl, Label } from '@/components/Form';
 import { getAllTickets, deleteFlight } from '../../redux/ticket.actions';
 import { getAllTicketsState } from '../../redux/ticket.slice';
@@ -239,7 +239,7 @@ export function ListFlights() {
         </div>
       </section>
 
-      <CustomModal isOpen={isOpen} closeModal={closeModal} label="Delete flight">
+      <Modal isOpen={isOpen} closeModal={closeModal} label="Delete flight">
         <div className="flex flex-wrap gap-4 flex-col">
           <IoWarningOutline size={32} />
           <h2 className="text-2xl font-bold">Delete flight {currentTicket.code}?</h2>
@@ -264,7 +264,7 @@ export function ListFlights() {
             </button>
           </div>
         </div>
-      </CustomModal>
+      </Modal>
     </Layout>
   );
 }

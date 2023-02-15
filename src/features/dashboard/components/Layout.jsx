@@ -8,7 +8,7 @@ import { IoWarningOutline } from 'react-icons/io5';
 
 import { Protected } from '@/components/Routes';
 import { Logo } from '@/components/Icons';
-import { CustomModal } from '@/components/Elements';
+import { Modal } from '@/components/Elements';
 import { logout } from '@/features/auth/redux/auth.slice';
 
 export function Layout({ children }) {
@@ -146,7 +146,7 @@ export function AuthRightElementNavbar({ handleLogout, username, openModal, isOp
             <button type="button" onClick={openModal}>
               <TbLogout /> Logout
             </button>
-            <CustomModal
+            <Modal
               isOpen={isOpen}
               closeModal={closeModal}
               className="max-w-xs"
@@ -164,7 +164,7 @@ export function AuthRightElementNavbar({ handleLogout, username, openModal, isOp
                   <TbLogout className="mr-2" /> Logout
                 </button>
               </div>
-            </CustomModal>
+            </Modal>
           </li>
         </ul>
       </div>

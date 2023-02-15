@@ -1,6 +1,6 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable react/jsx-no-bind */
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 
 const customStyles = {
   content: {
@@ -13,16 +13,16 @@ const customStyles = {
   }
 };
 
-export function CustomModal({ isOpen, children, closeModal, label, className }) {
+export function Modal({ isOpen, children, closeModal, label, className }) {
   return (
-    <Modal
+    <ReactModal
       ariaHideApp={false}
       isOpen={isOpen}
       onRequestClose={closeModal}
       style={customStyles}
       className={`modal-box relative ${className}`}
-      contentLabel={label ?? 'Example'}>
+      contentLabel={label || 'Example'}>
       {children}
-    </Modal>
+    </ReactModal>
   );
 }

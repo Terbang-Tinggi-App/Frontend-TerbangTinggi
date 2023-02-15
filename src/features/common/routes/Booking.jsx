@@ -10,7 +10,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '@/config';
 import { FormControl, Label } from '@/components/Form';
 import { Layout } from '@/components/Layout';
-import { Button, CustomModal, TextSkeleton } from '@/components/Elements';
+import { Button, Modal, TextSkeleton } from '@/components/Elements';
 
 export function Booking() {
   const [data, setData] = useState([]);
@@ -289,11 +289,7 @@ export function Booking() {
           Proceed to payment
         </Button>
       </div>
-      <CustomModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        label="example modal usage"
-        className="z-10">
+      <Modal isOpen={isOpen} closeModal={closeModal} label="example modal usage" className="z-10">
         <IoWarningOutline size="32" />
         <h1 className="font-semibold text-2xl md:text-3xl my-2 md:my-4">Proceed to payment?</h1>
         <p>
@@ -308,7 +304,7 @@ export function Booking() {
             Proceed to payment
           </Button>
         </div>
-      </CustomModal>
+      </Modal>
     </Layout>
   );
 }

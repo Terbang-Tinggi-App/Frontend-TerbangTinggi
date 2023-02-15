@@ -4,7 +4,7 @@ import { TbLogout, TbUser, TbHistory } from 'react-icons/tb';
 import { IoWarningOutline } from 'react-icons/io5';
 import { RxDashboard } from 'react-icons/rx';
 
-import { CustomModal } from '@/components/Elements';
+import { Modal } from '@/components/Elements';
 
 export function AuthenticatedMenu({
   handleLogout,
@@ -80,7 +80,7 @@ export function AuthenticatedMenu({
             <button type="button" onClick={openModal}>
               <TbLogout /> Logout
             </button>
-            <CustomModal
+            <Modal
               isOpen={isOpen}
               closeModal={closeModal}
               className="max-w-xs"
@@ -98,7 +98,7 @@ export function AuthenticatedMenu({
                   <TbLogout className="mr-2" /> Logout
                 </button>
               </div>
-            </CustomModal>
+            </Modal>
           </li>
         </ul>
       </div>

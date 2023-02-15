@@ -8,7 +8,7 @@ import axios from 'axios';
 import { BASE_API_URL } from '@/config';
 import useValidUser from '@/hooks/useValidUser';
 import { Layout } from '@/components/Layout';
-import { Button, CustomModal, ImageSkeleton, TextSkeleton } from '@/components/Elements';
+import { Button, Modal, ImageSkeleton, TextSkeleton } from '@/components/Elements';
 import { Protected } from '@/components/Routes';
 
 export function Payment() {
@@ -205,7 +205,7 @@ export function Payment() {
               } bg-info text-black font-bold px-4 py-2 rounded-[4px]`}>
               Paid, get your e-ticket now
             </div>
-            <CustomModal isOpen={isOpen} closeModal={closeModal} label="Payment confirmation">
+            <Modal isOpen={isOpen} closeModal={closeModal} label="Payment confirmation">
               <MdPayment size={32} />
               <div className="flex flex-col justify-center gap-4 mt-2">
                 <h2 className="font-bold text-xl">Confirm this payment?</h2>
@@ -222,7 +222,7 @@ export function Payment() {
                   </Button>
                 </div>
               </div>
-            </CustomModal>
+            </Modal>
           </div>
         </div>
       </Layout>
