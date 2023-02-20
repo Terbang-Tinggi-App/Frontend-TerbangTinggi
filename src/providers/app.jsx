@@ -31,7 +31,18 @@ export function AppProvider({ children }) {
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
           <Router>{children}</Router>
         </GoogleOAuthProvider>
-        <ToastContainer autoClose={500} position="bottom-right" />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={500}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="dark"
+        />
       </ErrorBoundary>
     </Suspense>
   );
